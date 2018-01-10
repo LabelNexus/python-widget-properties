@@ -1,6 +1,6 @@
 from .base_component import BaseComponent
-import behavior
-import pyro
+from ..constants import EXPERIENCE_CLOUD_FACTORY
+from ..properties import Properties
 import aws
 
 class HomePageTypeComponent(BaseComponent):
@@ -9,12 +9,12 @@ class HomePageTypeComponent(BaseComponent):
 
   def get_properties(self):
     return [
-      behavior.Properties.Property(None, 'Manifest', 'displayName', 'Name', 'text', default='Home'),
-      behavior.Properties.Property(None, 'Manifest', 'shortName', 'Short Name', 'text', default='Home'),
-      behavior.Properties.Property(None, 'Manifest', 'backgroundColor', 'Background Color', 'color', default='#fff'),
-      behavior.Properties.Property(None, 'Manifest', 'themeColor', 'Theme Color', 'color', default='#fff'),
-      behavior.Properties.Property(None, 'Manifest', 'icon', 'Icon', 'image-upload'),
-      behavior.Properties.Property(None, 'Manifest', 'favicon', 'Fav Icon', 'image-upload')
+      Properties.Property(None, 'Manifest', 'displayName', 'Name', 'text', default='Home'),
+      Properties.Property(None, 'Manifest', 'shortName', 'Short Name', 'text', default='Home'),
+      Properties.Property(None, 'Manifest', 'backgroundColor', 'Background Color', 'color', default='#fff'),
+      Properties.Property(None, 'Manifest', 'themeColor', 'Theme Color', 'color', default='#fff'),
+      roperties.Property(None, 'Manifest', 'icon', 'Icon', 'image-upload'),
+      Properties.Property(None, 'Manifest', 'favicon', 'Fav Icon', 'image-upload')
     ]
 
   def read(self, data):
@@ -32,12 +32,12 @@ class HomePageTypeComponent(BaseComponent):
     # this also prevents the issue of ending up with two different keys in
     # s3 in which the base image thumbnail key is saved with the record
     if icon_key is not None:
-      pyro.Request.ExperienceCloud().post('/iot/v1/icons/manifest', {
+      EXPERIENCE_CLOUD_FACTORY().post('/iot/v1/icons/manifest', {
         'key': val.get('icon', {}).get('key')
       })
 
     if favicon_key is not None:
-      pyro.Request.ExperienceCloud().post('/iot/v1/icons/favicon', {
+      EXPERIENCE_CLOUD_FACTORY.post('/iot/v1/icons/favicon', {
         'key': val.get('favicon', {}).get('key')
       })
 
