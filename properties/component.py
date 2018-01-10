@@ -1,6 +1,6 @@
 from .base_property_type import BasePropertyType
 from ..exceptions import ValidationException
-import behavior
+from ..components import Components
 
 class ComponentPropertyType(BasePropertyType):
   @staticmethod
@@ -28,7 +28,7 @@ class ComponentPropertyType(BasePropertyType):
     component_data = val.get('componentData', {})
     component_json = next((x for x in self.property.options.get('components', []) if x['type'] == component_type), None)
     if component_json:
-      component = behavior.Components.BaseComponent.from_json(component_json)
+      component = Components.BaseComponent.from_json(component_json)
       component_data = component.read(component_data)
       result = {
         'componentType': component.component_type,
