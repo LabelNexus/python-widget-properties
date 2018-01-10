@@ -1,4 +1,15 @@
-import behavior
+from .text import TextPropertyType
+from .color import ColorPropertyType
+from .image import ImagePropertyType
+from .component import ComponentPropertyType
+from .components import ComponentsPropertyType
+from .checkbox import CheckboxPropertyType
+from .toggle import TogglePropertyType
+from .translated_text import TranslatedTextProperty
+from .dropdown import DropdownPropertyType
+from .multiselect import MultiselectPropertyType
+from .numeric import NumericPropertyType
+from .page_link import PageLinkPropertyType
 
 class Property:
   def __init__(self, classification, section, name, label, property_type_name, options={}, default=None):
@@ -35,8 +46,6 @@ class Property:
       'dropdown': behavior.Properties.DropdownPropertyType,
       'multiselect': behavior.Properties.MultiselectPropertyType,
       'numeric': behavior.Properties.NumericPropertyType,
-      'model-image-upload': behavior.Properties.ModelImagePropertyType,
-      'header-title': behavior.Properties.HeaderTitlePropertyiType,
       'page-link': behavior.Properties.PageLinkPropertyType
     }
 
