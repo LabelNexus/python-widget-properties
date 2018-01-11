@@ -1,5 +1,5 @@
 from .base_property_type import BasePropertyType
-from ..exceptions import ValidationException
+from lumavate_exceptions import ValidationException
 
 class DropdownPropertyType(BasePropertyType):
   @staticmethod
