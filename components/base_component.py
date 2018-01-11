@@ -1,6 +1,4 @@
 from flask import request, current_app
-from .home_page_type import HomePageTypeComponent
-from .base_component import BaseComponent
 from ..properties import Properties
 import os
 
@@ -30,6 +28,7 @@ class BaseComponent:
   @staticmethod
   def from_json(json):
     if json.get('type') == 'home':
+      from .home_page_type import HomePageTypeComponent
       return HomePageTypeComponent()
 
     else:
