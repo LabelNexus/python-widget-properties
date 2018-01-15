@@ -1,4 +1,5 @@
 from flask import request, current_app
+from ..constants import trigger_read_handlers
 from ..properties import Properties
 import os
 
@@ -45,6 +46,8 @@ class BaseComponent:
     result_data = {}
     for x in self.properties:
       result_data[x.name] = x.read(data)
+
+    result_data = trigger_read_handlers(self.__class__, result_data)
 
     #if self.component_type == 'location':
     #  result_data.update(behavior.Geocode.GeocodeBehavior().get_coordinates(address=result_data.get('address')))
