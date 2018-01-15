@@ -10,6 +10,7 @@ from .dropdown import DropdownPropertyType
 from .multiselect import MultiselectPropertyType
 from .numeric import NumericPropertyType
 from .page_link import PageLinkPropertyType
+from lumavate_exceptions import ValidationException
 
 class Property:
   def __init__(self, classification, section, name, label, property_type_name, options={}, default=None):
@@ -35,23 +36,23 @@ class Property:
 
   def get_property_type(self, type_name):
     types = {
-      'text' : behavior.Properties.TextPropertyType,
-      'color': behavior.Properties.ColorPropertyType,
-      'image-upload': behavior.Properties.ImagePropertyType,
-      'component': behavior.Properties.ComponentPropertyType,
-      'components': behavior.Properties.ComponentsPropertyType,
-      'checkbox': behavior.Properties.CheckboxPropertyType,
-      'toggle': behavior.Properties.TogglePropertyType,
-      'translated-text': behavior.Properties.TranslatedTextProperty,
-      'dropdown': behavior.Properties.DropdownPropertyType,
-      'multiselect': behavior.Properties.MultiselectPropertyType,
-      'numeric': behavior.Properties.NumericPropertyType,
-      'page-link': behavior.Properties.PageLinkPropertyType
+      'text' : TextPropertyType,
+      'color': ColorPropertyType,
+      'image-upload': ImagePropertyType,
+      'component': ComponentPropertyType,
+      'components': ComponentsPropertyType,
+      'checkbox': CheckboxPropertyType,
+      'toggle': TogglePropertyType,
+      'translated-text': TranslatedTextProperty,
+      'dropdown': DropdownPropertyType,
+      'multiselect': MultiselectPropertyType,
+      'numeric': NumericPropertyType,
+      'page-link': PageLinkPropertyType
     }
 
     prop_type = types.get(type_name)
     if prop_type is None:
-      raise Exception('Unknown type name')
+      raise ValidationException('Unknown type name:' + type_name)
 
     return prop_type(self)
 

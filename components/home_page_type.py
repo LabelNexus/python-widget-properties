@@ -13,7 +13,7 @@ class HomePageTypeComponent(BaseComponent):
       Properties.Property(None, 'Manifest', 'shortName', 'Short Name', 'text', default='Home'),
       Properties.Property(None, 'Manifest', 'backgroundColor', 'Background Color', 'color', default='#fff'),
       Properties.Property(None, 'Manifest', 'themeColor', 'Theme Color', 'color', default='#fff'),
-      roperties.Property(None, 'Manifest', 'icon', 'Icon', 'image-upload'),
+      Properties.Property(None, 'Manifest', 'icon', 'Icon', 'image-upload'),
       Properties.Property(None, 'Manifest', 'favicon', 'Fav Icon', 'image-upload')
     ]
 

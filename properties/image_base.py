@@ -1,7 +1,4 @@
 from flask import current_app
-from ..constants import EXPERIENCE_CLOUD_FACTORY
-
-EXPERIENCE_CLOUD_FACTORY = None
 
 class ImageBase:
   def read_image(self, val):
@@ -12,10 +9,10 @@ class ImageBase:
       'key': val.get('key')
     }
 
-    if data['ephemeralKey']:
-      return EXPERIENCE_CLOUD_FACTORY.post('/iot/v1/files/upload', data)
+    #if data['ephemeralKey']:
+    #  return EXPERIENCE_CLOUD_FACTORY.post('/iot/v1/files/upload', data)
 
-    no_image = EXPERIENCE_CLOUD_FACTORY.get_base_url() + '/iot/v1/icons/no_image_available.png'
+    no_image = 'ec-location' + '/iot/v1/icons/no_image_available.png'
     return {
       'key': val.get('key'),
       'version': val.get('version'),
