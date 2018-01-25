@@ -1,7 +1,6 @@
 from .base_component import BaseComponent
 from ..constants import EXPERIENCE_CLOUD_FACTORY
 from ..properties import Properties
-import aws
 
 class HomePageTypeComponent(BaseComponent):
   def __init__(self):
