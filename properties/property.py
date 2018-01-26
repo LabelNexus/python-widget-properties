@@ -13,7 +13,7 @@ from .page_link import PageLinkPropertyType
 from lumavate_exceptions import ValidationException
 
 class Property:
-  def __init__(self, classification, section, name, label, property_type_name, options={}, default=None):
+  def __init__(self, classification, section, name, label, property_type_name, options={}, default=None, help_text=None):
     self.property_type = self.get_property_type(property_type_name)
     self.classification = classification
     self.section = section
@@ -22,6 +22,7 @@ class Property:
     self.default = default
     self.property_type.property = self
     self.options = options
+    self.help_text = help_text
 
   @staticmethod
   def from_json(json):
@@ -32,7 +33,8 @@ class Property:
       json.get('label'), \
       json.get('type'), \
       options=json.get('options'), \
-      default=json.get('default'))
+      default=json.get('default'), \
+      help_text=json.get('helpText'))
 
   def get_property_type(self, type_name):
     types = {
@@ -64,7 +66,8 @@ class Property:
       'label': self.label,
       'type': self.property_type.type_name,
       'options': self.options,
-      'default': self.default
+      'default': self.default,
+      'helpText': self.help_text
     }
 
   def read(self, data):
