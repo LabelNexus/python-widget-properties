@@ -42,6 +42,9 @@ class ComponentsPropertyType(BasePropertyType):
           'componentData': component_data,
           'displayName': component.label + additional_display
         }
+        if component.component_type in g.all_components:
+          result['componentTemplate'] = g.all_components.get(component.component_type, {}).get('template', '')
+
         components.append(result)
       else:
         raise ValidationException('Invalid Value: ' + component_type)

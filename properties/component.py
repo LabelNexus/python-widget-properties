@@ -29,11 +29,6 @@ class ComponentPropertyType(BasePropertyType):
     component_data = val.get('componentData', {})
     component_json = next((x for x in self.property.options.get('components', []) if x['type'] == component_type), None)
 
-    all_components = {}
-    for cs in g.component_sets:
-      for c in cs.get('currentVersion', {}).get('components', []):
-        all_components[c['type']] = c
-
     if component_json:
       from ..components import Components
       component = Components.BaseComponent.from_json(component_json)
@@ -41,9 +36,11 @@ class ComponentPropertyType(BasePropertyType):
       result = {
         'componentType': component.component_type,
         'componentData': component_data,
-        'componentTemplate': all_components.get(component.component_type, {}).get('template', ''),
         'displayName': component.component_type
       }
+      if component.component_type in g.all_components:
+        result['componentTemplate'] = g.all_components.get(component.component_type, {}).get('template', '')
+
     else:
       raise ValidationException('Invalid Value: ' + component_type)
 
