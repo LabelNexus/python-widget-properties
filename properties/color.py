@@ -14,6 +14,8 @@ class ColorPropertyType(TextPropertyType):
     if val is None:
       val = '#fff'
 
+    val = val.lower()
+
     if not bool(_rgbstring.match(val)):
       raise ValidationException(400, 'Invalid Color: ' + val)
 
