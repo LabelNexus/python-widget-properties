@@ -42,6 +42,10 @@ class ComponentPropertyType(BasePropertyType):
         result['componentTemplate'] = g.all_components.get(component.component_type, {}).get('template', '')
 
     else:
-      raise ValidationException('Invalid Value: ' + component_type)
+      result = {
+        'componentType': 'None',
+        'componentData': {},
+        'displayName': 'None'
+      }
 
     return result
