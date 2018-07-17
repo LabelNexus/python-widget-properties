@@ -26,6 +26,9 @@ class Property:
 
   @staticmethod
   def from_json(json):
+    if json is None:
+      return None
+
     return Property( \
       json.get('classification'), \
       json.get('section'), \
