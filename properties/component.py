@@ -38,8 +38,16 @@ class ComponentPropertyType(BasePropertyType):
         'componentData': component_data,
         'displayName': component.component_type
       }
+
+      display_name_template = None
+
       if component.component_type in g.all_components:
         result['componentTemplate'] = g.all_components.get(component.component_type, {}).get('template', '')
+        display_name_template = g.all_components.get(component.component_type, {}).get('displayNameTemplate')
+
+      if display_name_template:
+        rtemplate = Environment(loader=BaseLoader).from_string(display_name_template)
+        result['displayName'] = rtemplate.render(**result)
 
     else:
       result = {
