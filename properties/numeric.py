@@ -23,6 +23,9 @@ class NumericPropertyType(BasePropertyType):
   def read(self, data):
     val = super().read(data)
 
+    if val == "":
+      val = self.property.default
+
     try:
      val = int(val)
 
