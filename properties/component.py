@@ -26,6 +26,13 @@ class ComponentPropertyType(BasePropertyType):
       raise ValidationException('Invalid Value: ' + str(val))
 
     component_type = val.get('componentType', '__NOTYPE__')
+
+    # The widget instance could've been created without valid component sets and set to None values.
+    # Determine if that is the case and if we should re-evaluate the property
+    if component_type == 'None' and self.property.default.get('componentType') is not None:
+      val = self.property.default
+      component_type = val.get('componentType', '__NOTYPE__')
+
     component_data = val.get('componentData', {})
     component_json = next((x for x in self.property.options.get('components', []) if x['type'] == component_type), None)
 
