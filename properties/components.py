@@ -33,16 +33,19 @@ class ComponentsPropertyType(BasePropertyType):
         from ..components import Components
         component = Components.BaseComponent.from_json(component_json)
         component_data = component.read(component_data)
-        additional_display = component_data.get('title', {}).get('en-us')
-        if additional_display:
-          additional_display = ' - ' + str(additional_display)
-        else:
-          additional_display = ''
+
+        display_name = component.label
+        additional_display = component_data.get('title')
+        if additional_display and isinstance(additional_display, dict) and 'en-us' in additional_display:
+          display_name = display_name + ' - ' + str(additional_display['en-us'])
+        elif additional_display:
+          display_name = display_name + ' - ' + str(additional_display)
+
 
         result = {
           'componentType': component.component_type,
           'componentData': component_data,
-          'displayName': component.label
+          'displayName': display_name
         }
         display_name_template = None
 
