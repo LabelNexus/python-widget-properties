@@ -28,6 +28,9 @@ class MultiselectPropertyType(BasePropertyType):
     if val is None:
       val = self.property.default
 
+    if val is None:
+      val = []
+
     val = [check_hash[str(x)] for x in val if check_hash.get(str(x))]
 
     return val
