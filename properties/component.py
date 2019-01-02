@@ -47,6 +47,8 @@ class ComponentPropertyType(BasePropertyType):
       }
 
       display_name_template = None
+      if component.display_name is not None and '{{' in component.display_name:
+        display_name_template = component.display_name
 
       if component.component_type in g.all_components:
         component_meta = g.all_components.get(component.component_type, {})

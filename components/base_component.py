@@ -38,7 +38,7 @@ class BaseComponent:
         json.get('classification'), \
         json.get('section'), \
         json.get('label'), \
-        json.get('display_name'), \
+        json.get('displayName'), \
         json.get('icon'), \
         [Properties.Property.from_json(x) for x in json.get('properties', [])])
 
