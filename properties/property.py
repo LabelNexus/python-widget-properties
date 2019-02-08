@@ -10,6 +10,7 @@ from .dropdown import DropdownPropertyType
 from .multiselect import MultiselectPropertyType
 from .numeric import NumericPropertyType
 from .page_link import PageLinkPropertyType
+from .code_editor import CodeEditorPropertyType
 from lumavate_exceptions import ValidationException
 
 class Property:
@@ -52,7 +53,8 @@ class Property:
       'dropdown': DropdownPropertyType,
       'multiselect': MultiselectPropertyType,
       'numeric': NumericPropertyType,
-      'page-link': PageLinkPropertyType
+      'page-link': PageLinkPropertyType,
+      'code-editor': CodeEditorPropertyType
     }
 
     prop_type = types.get(type_name)
