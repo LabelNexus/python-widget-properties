@@ -1,7 +1,8 @@
-from .base_property_type import BasePropertyType
+from .text import TextPropertyType
 from lumavate_exceptions import ValidationException
+import re
 
-class CodeEditorPropertyType(BasePropertyType):
+class CodeEditorPropertyType(TextPropertyType):
   @property
   def type_name(self):
     return 'code-editor'
