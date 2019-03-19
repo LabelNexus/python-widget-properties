@@ -12,6 +12,7 @@ from .numeric import NumericPropertyType
 from .page_link import PageLinkPropertyType
 from .code_editor import CodeEditorPropertyType
 from .theme_color import ThemeColorPropertyType
+from .admin_launcher import AdminLauncherPropertyType
 from lumavate_exceptions import ValidationException
 
 class Property:
@@ -56,7 +57,8 @@ class Property:
       'numeric': NumericPropertyType,
       'page-link': PageLinkPropertyType,
       'code-editor': CodeEditorPropertyType,
-      'theme-color': ThemeColorPropertyType
+      'theme-color': ThemeColorPropertyType,
+      'admin-launcher': AdminLauncherPropertyType
     }
 
     prop_type = types.get(type_name)
