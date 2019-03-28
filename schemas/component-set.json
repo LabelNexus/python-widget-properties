@@ -98,7 +98,7 @@
                   "then": {
                     "allOf": [
                       {
-                        "$ref": "https://github.com/LabelNexus/python-widget-properties/tree/feature/component-set-schema/schemas/properties.json#/definitions/text"
+                        "$ref": "https://raw.githubusercontent.com/LabelNexus/python-widget-properties/feature/component-set-schema/schemas/properties.json#/definitions/text"
                       }
                     ]
                   }
@@ -114,7 +114,7 @@
                   "then": {
                     "allOf": [
                       {
-                        "$ref": "https://github.com/LabelNexus/python-widget-properties/tree/feature/component-set-schema/schemas/properties.json#/definitions/numeric"
+                        "$ref": "https://raw.githubusercontent.com/LabelNexus/python-widget-properties/feature/component-set-schema/schemas/properties.json#/definitions/numeric"
                       }
                     ]
                   }
@@ -130,7 +130,7 @@
                   "then": {
                     "allOf": [
                       {
-                        "$ref": "https://github.com/LabelNexus/python-widget-properties/tree/feature/component-set-schema/schemas/properties.json#/definitions/translatedText"
+                        "$ref": "https://raw.githubusercontent.com/LabelNexus/python-widget-properties/feature/component-set-schema/schemas/properties.json#/definitions/translatedText"
                       }
                     ]
                   }
@@ -146,7 +146,7 @@
                   "then": {
                     "allOf": [
                       {
-                        "$ref": "https://github.com/LabelNexus/python-widget-properties/tree/feature/component-set-schema/schemas/properties.json#/definitions/themeColor"
+                        "$ref": "https://raw.githubusercontent.com/LabelNexus/python-widget-properties/feature/component-set-schema/schemas/properties.json#/definitions/themeColor"
                       }
                     ]
                   }
@@ -162,7 +162,7 @@
                   "then": {
                     "allOf": [
                       {
-                        "$ref": "https://github.com/LabelNexus/python-widget-properties/tree/feature/component-set-schema/schemas/properties.json#/definitions/codeEditor"
+                        "$ref": "https://raw.githubusercontent.com/LabelNexus/python-widget-properties/feature/component-set-schema/schemas/properties.json#/definitions/codeEditor"
                       }
                     ]
                   }
@@ -178,7 +178,7 @@
                   "then": {
                     "allOf": [
                       {
-                        "$ref": "https://github.com/LabelNexus/python-widget-properties/tree/feature/component-set-schema/schemas/properties.json#/definitions/checkbox"
+                        "$ref": "https://raw.githubusercontent.com/LabelNexus/python-widget-properties/feature/component-set-schema/schemas/properties.json#/definitions/checkbox"
                       }
                     ]
                   }
@@ -194,7 +194,7 @@
                   "then": {
                     "allOf": [
                       {
-                        "$ref": "https://github.com/LabelNexus/python-widget-properties/tree/feature/component-set-schema/schemas/properties.json#/definitions/color"
+                        "$ref": "https://raw.githubusercontent.com/LabelNexus/python-widget-properties/feature/component-set-schema/schemas/properties.json#/definitions/color"
                       }
                     ]
                   }
@@ -210,7 +210,8 @@
                   "then": {
                     "allOf": [
                       {
-                        "$ref": "https://github.com/LabelNexus/python-widget-properties/tree/feature/component-set-schema/schemas/properties.json#/definitions/dropdown"
+                        "$ref": "https://raw.githubusercontent.com/LabelNexus/python-widget-properties/feature/component-set-schema/schemas/properties.json#/definitions/dropdown"
+                      }
                       }
                     ]
                   }
@@ -226,7 +227,7 @@
                   "then": {
                     "allOf": [
                       {
-                        "$ref": "https://github.com/LabelNexus/python-widget-properties/tree/feature/component-set-schema/schemas/properties.json#/definitions/imageUpload"
+                        "$ref": "https://raw.githubusercontent.com/LabelNexus/python-widget-properties/feature/component-set-schema/schemas/properties.json#/definitions/imageUpload"
                       }
                     ]
                   }
@@ -242,7 +243,7 @@
                   "then": {
                     "allOf": [
                       {
-                        "$ref": "https://github.com/LabelNexus/python-widget-properties/tree/feature/component-set-schema/schemas/properties.json#/definitions/multiselect"
+                        "$ref": "https://raw.githubusercontent.com/LabelNexus/python-widget-properties/feature/component-set-schema/schemas/properties.json#/definitions/multiselect"
                       }
                     ]
                   }
@@ -258,7 +259,7 @@
                   "then": {
                     "allOf": [
                       {
-                        "$ref": "https://github.com/LabelNexus/python-widget-properties/tree/feature/component-set-schema/schemas/properties.json#/definitions/pageLink"
+                        "$ref": "https://raw.githubusercontent.com/LabelNexus/python-widget-properties/feature/component-set-schema/schemas/properties.json#/definitions/pageLink"
                       }
                     ]
                   }
@@ -274,7 +275,7 @@
                   "then": {
                     "allOf": [
                       {
-                        "$ref": "https://github.com/LabelNexus/python-widget-properties/tree/feature/component-set-schema/schemas/properties.json#/definitions/toggle"
+                        "$ref": "https://raw.githubusercontent.com/LabelNexus/python-widget-properties/feature/component-set-schema/schemas/properties.json#/definitions/toggle"
                       }
                     ]
                   }
