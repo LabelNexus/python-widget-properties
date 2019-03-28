@@ -1,10 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://www.lumavate.dev/schemas/properties.schema.json",
   "title": "Lumavate property types",
   "description": "The property types in the Lumavate platform",
   "type": "object",
-  "additionalProperties": false,
   "definitions": {
     "common": {
       "properties": {
