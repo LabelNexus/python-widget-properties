@@ -401,7 +401,7 @@
                     {
                       "type": "string",
                       "$comment": "Allow case insensitive true|false string",
-                      "pattern": "^(?i)(true|false)$"
+                      "pattern": "^(true|false|TRUE|FALSE)$"
                     },
                     {
                       "type": "boolean"
@@ -443,7 +443,7 @@
                     {
                       "type": "string",
                       "$comment": "Allow case insensitive true or false string",
-                      "pattern": "^(?i)(true|false)$"
+                      "pattern": "^(true|false|TRUE|FALSE)$"
                     },
                     {
                       "type": "boolean"
@@ -525,7 +525,7 @@
                 {
                   "type": "string",
                   "$comment": "Allow case insensitive true or false string",
-                  "pattern": "^(?i)(true|false)$"
+                  "pattern": "^(true|false|TRUE|FALSE)$"
                 },
                 {
                   "type": "boolean"
@@ -682,7 +682,7 @@
                 {
                   "type": "string",
                   "$comment": "Allow case insensitive true or false string",
-                  "pattern": "^(?i)(true|false)$"
+                  "pattern": "^(true|false|TRUE|FALSE)$"
                 },
                 {
                   "type": "boolean"
