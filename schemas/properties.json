@@ -1,0 +1,354 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://www.lumavate.dev/schemas/properties.schema.json",
+  "title": "Lumavate property types",
+  "description": "The property types in the Lumavate platform",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "common": {
+      "properties": {
+        "classification": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "section": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "$comment": "Name must be lower camel case",
+          "pattern": "^[a-z]+[A-Za-z0-9]*$"
+        },
+        "label": {
+          "type": "string"
+        },
+        "helpText": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "label"
+      ]
+    },
+    "text": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/common"
+        },
+        {
+          "properties": {
+            "default": {
+              "type": "string"
+            },
+            "options": {
+              "type": "object",
+              "properties": {
+                "readonly": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "$comment": "Allow case insensitive true|false string",
+                      "pattern": "^(?i)(true|false)$"
+                    },
+                    {
+                      "type": "boolean"
+                    }
+                  ]
+                },
+                "rows": {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "translatedText": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/common"
+        },
+        {
+          "properties": {
+            "default": {
+              "type": "object",
+              "$comment": "Allow any text as the key for a language",
+              "patternProperties": {
+                ".*": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            },
+            "options": {
+              "type": "object",
+              "properties": {
+                "readonly": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "$comment": "Allow case insensitive true or false string",
+                      "pattern": "^(?i)(true|false)$"
+                    },
+                    {
+                      "type": "boolean"
+                    }
+                  ]
+                },
+                "rows": {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "numeric": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/common"
+        },
+        {
+          "properties": {
+            "default": {
+              "type": "number"
+            },
+            "options": {
+              "type": "object",
+              "properties": {
+                "min": {
+                  "type": "integer"
+                },
+                "max": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "themeColor": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/common"
+        },
+        {
+          "properties": {
+            "default": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "codeEditor": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/common"
+        },
+        {
+          "properties": {
+            "default": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "checkbox": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/common"
+        },
+        {
+          "properties": {
+            "default": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "$comment": "Allow case insensitive true or false string",
+                  "pattern": "^(?i)(true|false)$"
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "color": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/common"
+        },
+        {
+          "properties": {
+            "default": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "dropdown": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/common"
+        },
+        {
+          "properties": {
+            "default": {
+              "type": "string"
+            },
+            "options": {
+              "type": "object",
+              "patternProperties": {
+                ".*": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false,
+              "minProperties": 1
+            }
+          },
+          "required": [
+            "options"
+          ]
+        }
+      ]
+    },
+    "imageUpload": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/common"
+        },
+        {
+          "properties": {
+            "default": {
+              "oneOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "ephemeralKey": {
+                      "type": "string"
+                    },
+                    "previewMedium": {
+                      "type": "string"
+                    },
+                    "thumbnail": {
+                      "type": "string"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "multiselect": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/common"
+        },
+        {
+          "properties": {
+            "default": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1
+            },
+            "options": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "displayValue": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              },
+              "minItems": 1
+            }
+          },
+          "required": [
+            "options"
+          ]
+        }
+      ]
+    },
+    "pageLink": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/common"
+        },
+        {
+          "properties": {
+            "default": {
+              "type": "object",
+              "properties": {
+                "mode": {
+                  "type": "string"
+                },
+                "instanceId": {
+                  "type": "number"
+                },
+                "url": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "toggle": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/common"
+        },
+        {
+          "properties": {
+            "default": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "$comment": "Allow case insensitive true or false string",
+                  "pattern": "^(?i)(true|false)$"
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}

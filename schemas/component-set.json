@@ -1,0 +1,400 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Component Set",
+  "description": "A component set in the Lumavate platform",
+  "type": "object",
+  "properties": {
+    "components": {
+      "description": "The component definitions for this component set",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "icon": {
+            "type": "string",
+            "pattern": "\\.svg$",
+            "description": "Path to the SVG file for the component icon"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+          "type": {
+            "type": "string",
+            "$comment": "Type must be numeric, lower case letters and/or dashes",
+            "pattern": "^[0-9a-z\\-]+$"
+          },
+          "properties": {
+            "description": "The properties for the component",
+            "type": "array",
+            "items": {
+              "$comment": "The $id here tells the schema to search that schema for any $ref properties",
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "theme-color",
+                    "code-editor",
+                    "translated-text",
+                    "text",
+                    "color",
+                    "image-upload",
+                    "checkbox",
+                    "toggle",
+                    "dropdown",
+                    "numeric",
+                    "multiselect",
+                    "page-link"
+                  ]
+                }
+              },
+              "defaultSnippets": [
+                {
+                  "label": "New Translated Text",
+                  "description": "A translated text property that supports multiple languages",
+                  "body": {
+                    "label": "${1:New Translated Text}",
+                    "type": "translated-text",
+                    "default": {
+                      "en-us": "${2:Hello World}"
+                    },
+                    "name": "${3:newTranslatedText}",
+                    "options": {
+                      "readonly": "^${4|false,true|}",
+                      "value": "helloWorld"
+                    }
+                  }
+                },
+                {
+                  "label": "New Multiselect",
+                  "description": "A multiselect property that allows multiple values to be selected",
+                  "body": {
+                    "label": "New Multiselect",
+                    "name": "newMultiSelect",
+                    "options": [{
+                      "displayValue": "Hello World",
+                      "value": "helloWorld"
+                    }]
+                  }
+                }
+              ],
+              "allOf": [
+                {
+                  "if": {
+                    "properties": {
+                      "type": {
+                        "const": "text"
+                      }
+                    }
+                  },
+                  "then": {
+                    "allOf": [
+                      {
+                        "$ref": "https://github.com/LabelNexus/python-widget-properties/tree/feature/component-set-schema/schemas/properties.json#/definitions/text"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "if": {
+                    "properties": {
+                      "type": {
+                        "const": "numeric"
+                      }
+                    }
+                  },
+                  "then": {
+                    "allOf": [
+                      {
+                        "$ref": "https://github.com/LabelNexus/python-widget-properties/tree/feature/component-set-schema/schemas/properties.json#/definitions/numeric"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "if": {
+                    "properties": {
+                      "type": {
+                        "const": "translated-text"
+                      }
+                    }
+                  },
+                  "then": {
+                    "allOf": [
+                      {
+                        "$ref": "https://github.com/LabelNexus/python-widget-properties/tree/feature/component-set-schema/schemas/properties.json#/definitions/translatedText"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "if": {
+                    "properties": {
+                      "type": {
+                        "const": "theme-color"
+                      }
+                    }
+                  },
+                  "then": {
+                    "allOf": [
+                      {
+                        "$ref": "https://github.com/LabelNexus/python-widget-properties/tree/feature/component-set-schema/schemas/properties.json#/definitions/themeColor"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "if": {
+                    "properties": {
+                      "type": {
+                        "const": "code-editor"
+                      }
+                    }
+                  },
+                  "then": {
+                    "allOf": [
+                      {
+                        "$ref": "https://github.com/LabelNexus/python-widget-properties/tree/feature/component-set-schema/schemas/properties.json#/definitions/codeEditor"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "if": {
+                    "properties": {
+                      "type": {
+                        "const": "checkbox"
+                      }
+                    }
+                  },
+                  "then": {
+                    "allOf": [
+                      {
+                        "$ref": "https://github.com/LabelNexus/python-widget-properties/tree/feature/component-set-schema/schemas/properties.json#/definitions/checkbox"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "if": {
+                    "properties": {
+                      "type": {
+                        "const": "color"
+                      }
+                    }
+                  },
+                  "then": {
+                    "allOf": [
+                      {
+                        "$ref": "https://github.com/LabelNexus/python-widget-properties/tree/feature/component-set-schema/schemas/properties.json#/definitions/color"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "if": {
+                    "properties": {
+                      "type": {
+                        "const": "dropdown"
+                      }
+                    }
+                  },
+                  "then": {
+                    "allOf": [
+                      {
+                        "$ref": "https://github.com/LabelNexus/python-widget-properties/tree/feature/component-set-schema/schemas/properties.json#/definitions/dropdown"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "if": {
+                    "properties": {
+                      "type": {
+                        "const": "image-upload"
+                      }
+                    }
+                  },
+                  "then": {
+                    "allOf": [
+                      {
+                        "$ref": "https://github.com/LabelNexus/python-widget-properties/tree/feature/component-set-schema/schemas/properties.json#/definitions/imageUpload"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "if": {
+                    "properties": {
+                      "type": {
+                        "const": "multiselect"
+                      }
+                    }
+                  },
+                  "then": {
+                    "allOf": [
+                      {
+                        "$ref": "https://github.com/LabelNexus/python-widget-properties/tree/feature/component-set-schema/schemas/properties.json#/definitions/multiselect"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "if": {
+                    "properties": {
+                      "type": {
+                        "const": "page-link"
+                      }
+                    }
+                  },
+                  "then": {
+                    "allOf": [
+                      {
+                        "$ref": "https://github.com/LabelNexus/python-widget-properties/tree/feature/component-set-schema/schemas/properties.json#/definitions/pageLink"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "if": {
+                    "properties": {
+                      "type": {
+                        "const": "toggle"
+                      }
+                    }
+                  },
+                  "then": {
+                    "allOf": [
+                      {
+                        "$ref": "https://github.com/LabelNexus/python-widget-properties/tree/feature/component-set-schema/schemas/properties.json#/definitions/toggle"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "required": [
+                "type"
+              ]
+            },
+            "minItems": 1
+          },
+          "displayNameTemplate": {
+            "type": "string"
+          },
+          "template": {
+            "oneOf": [
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 1
+              },
+              {
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "required": [
+          "label",
+          "section",
+          "icon",
+          "tags",
+          "type",
+          "properties",
+          "template"
+        ],
+        "defaultSnippets": [
+          {
+            "label": "New Component",
+            "description": "Defines a new Component",
+            "body": {
+              "type": "${1:newComponent}",
+              "label": "${2:New Component}",
+              "section": "${3:My Secction}",
+              "icon": "${4:.svg}",
+              "tags": [
+                "${5:body}"
+              ],
+              "properties": [
+                "^$6"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "styleData": {
+      "type": "array",
+      "items": {
+        "$comment": "The $id here tells the schema to search that schema for any $ref properties",
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "text",
+              "color"
+            ]
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "text"
+                }
+              }
+            },
+            "then": {
+              "allOf": [
+                {
+                  "$ref": "https://github.com/LabelNexus/python-widget-properties/tree/feature/component-set-schema/schemas/properties.json#/definitions/text"
+                }
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "color"
+                }
+              }
+            },
+            "then": {
+              "allOf": [
+                {
+                  "$ref": "https://github.com/LabelNexus/python-widget-properties/tree/feature/component-set-schema/schemas/properties.json#/definitions/color"
+                }
+              ]
+            }
+          }
+        ],
+        "required": [
+          "name",
+          "value",
+          "type"
+        ]
+      },
+      "minItems": 0
+    }
+  },
+  "required": [
+    "components",
+    "styleData"
+  ]
+}
