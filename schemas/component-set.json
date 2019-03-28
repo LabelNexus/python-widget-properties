@@ -212,7 +212,6 @@
                       {
                         "$ref": "https://raw.githubusercontent.com/LabelNexus/python-widget-properties/feature/component-set-schema/schemas/properties.json#/definitions/dropdown"
                       }
-                      }
                     ]
                   }
                 },
