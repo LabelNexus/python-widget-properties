@@ -63,10 +63,10 @@
                   "body": {
                     "label": "${1:New Translated Text}",
                     "type": "translated-text",
+                    "name": "${2:newTranslatedText}",
                     "default": {
-                      "en-us": "${2:Hello World}"
+                      "en-us": "${3:Hello World}"
                     },
-                    "name": "${3:newTranslatedText}",
                     "options": {
                       "readonly": "^${4|false,true|}",
                       "value": "helloWorld"
@@ -77,11 +77,12 @@
                   "label": "New Multiselect",
                   "description": "A multiselect property that allows multiple values to be selected",
                   "body": {
-                    "label": "New Multiselect",
-                    "name": "newMultiSelect",
+                    "label": "${1:New Multiselect}",
+                    "type": "multiselect",
+                    "name": "${2:newMultiSelect}",
                     "options": [{
-                      "displayValue": "Hello World",
-                      "value": "helloWorld"
+                      "displayValue": "${3:Hello World}",
+                      "value": "${4:helloWorld}"
                     }]
                   }
                 }
@@ -318,7 +319,7 @@
             "label": "New Component",
             "description": "Defines a new Component",
             "body": {
-              "type": "${1:newComponent}",
+              "type": "${1:new-component}",
               "label": "${2:New Component}",
               "section": "${3:My Secction}",
               "icon": "${4:.svg}",
