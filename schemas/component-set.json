@@ -362,7 +362,7 @@
             "then": {
               "allOf": [
                 {
-                  "$ref": "https://github.com/LabelNexus/python-widget-properties/tree/feature/component-set-schema/schemas/properties.json#/definitions/text"
+                  "$ref": "https://raw.githubusercontent.com/LabelNexus/python-widget-properties/feature/component-set-schema/schemas/properties.json#/definitions/text"
                 }
               ]
             }
@@ -378,7 +378,7 @@
             "then": {
               "allOf": [
                 {
-                  "$ref": "https://github.com/LabelNexus/python-widget-properties/tree/feature/component-set-schema/schemas/properties.json#/definitions/color"
+                  "$ref": "https://raw.githubusercontent.com/LabelNexus/python-widget-properties/feature/component-set-schema/schemas/properties.json#/definitions/color"
                 }
               ]
             }
