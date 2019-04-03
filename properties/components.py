@@ -52,6 +52,7 @@ class ComponentsPropertyType(BasePropertyType):
         if component.display_name is not None and '{{' in component.display_name:
           display_name_template = component.display_name
 
+
         if component.component_type in g.all_components:
           component_meta = g.all_components.get(component.component_type, {})
           # Flag the component as being used so widget proxy can update component set namespace version table
@@ -59,6 +60,9 @@ class ComponentsPropertyType(BasePropertyType):
 
           result['componentTemplate'] = component_meta.get('template', '')
           display_name_template = component_meta.get('displayNameTemplate')
+
+        if display_name_template is None and 'displayNameTemplate' in component_json:
+          display_name_template = component_json.get('displayNameTemplate')
 
         if display_name_template:
           rtemplate = Environment(loader=BaseLoader).from_string(display_name_template)

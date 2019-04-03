@@ -13,3 +13,5 @@ class Properties:
   from .multiselect import MultiselectPropertyType
   from .numeric import NumericPropertyType
   from .page_link import PageLinkPropertyType
+  from .code_editor import CodeEditorPropertyType
+  from .admin_launcher import AdminLauncherPropertyType

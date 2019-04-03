@@ -4,12 +4,13 @@ from ..properties import Properties
 import os
 
 class BaseComponent:
-  def __init__(self, component_type, category, section, label, display_name, icon_url, properties):
+  def __init__(self, component_type, category, section, label, display_name, icon_url, properties, display_name_template=None):
     self.component_type = component_type
     self.category = category
     self.section = section
     self.label = label
     self.display_name = display_name
+    self.display_name_template = display_name_template
     self.icon_url = 'a'
     self.properties = properties
     if self.properties is None:
@@ -22,6 +23,7 @@ class BaseComponent:
       'section': self.section,
       'label': self.label,
       'displayName': self.display_name,
+      'displayNameTemplate': self.display_name_template,
       'icon': self.icon_url,
       'properties': [x.to_json() for x in self.properties]
     }
