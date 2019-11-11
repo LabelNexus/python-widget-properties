@@ -60,7 +60,7 @@ class Property:
       'code-editor': CodeEditorPropertyType,
       'theme-color': ThemeColorPropertyType,
       'admin-launcher': AdminLauncherPropertyType,
-      'htlm-editor': HtmlEditorPropertyType
+      'html-editor': HtmlEditorPropertyType
     }
 
     prop_type = types.get(type_name)
