@@ -1,4 +1,4 @@
-
+from .base_property_type import BasePropertyType
 from lumavate_exceptions import ValidationException
 
 class TagModifierPropertyType(BasePropertyType):
@@ -24,7 +24,7 @@ class TagModifierPropertyType(BasePropertyType):
 
   def to_json(self):
     return {
-      'tagTypeModifier': self.tag_type_modifier
+        'tagTypeModifier': self.tag_type_modifier,
       'classification': self.classification,
       'section': self.section,
       'name': self.name,
