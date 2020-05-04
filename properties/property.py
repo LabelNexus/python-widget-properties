@@ -14,6 +14,7 @@ from .code_editor import CodeEditorPropertyType
 from .html_editor import HtmlEditorPropertyType
 from .theme_color import ThemeColorPropertyType
 from .admin_launcher import AdminLauncherPropertyType
+from .tag_modifier import TagModifierPropertyType
 from lumavate_exceptions import ValidationException
 
 class Property:
@@ -60,7 +61,8 @@ class Property:
       'code-editor': CodeEditorPropertyType,
       'theme-color': ThemeColorPropertyType,
       'admin-launcher': AdminLauncherPropertyType,
-      'html-editor': HtmlEditorPropertyType
+      'html-editor': HtmlEditorPropertyType,
+      'tag-modifier': TagModifierPropertyType
     }
 
     prop_type = types.get(type_name)
