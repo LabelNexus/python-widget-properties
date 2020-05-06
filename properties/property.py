@@ -15,6 +15,7 @@ from .html_editor import HtmlEditorPropertyType
 from .theme_color import ThemeColorPropertyType
 from .admin_launcher import AdminLauncherPropertyType
 from .tag_modifier import TagModifierPropertyType
+from .dynamic_component import DynamicComponentPropertyType
 from lumavate_exceptions import ValidationException
 
 class Property:
@@ -62,7 +63,8 @@ class Property:
       'theme-color': ThemeColorPropertyType,
       'admin-launcher': AdminLauncherPropertyType,
       'html-editor': HtmlEditorPropertyType,
-      'tag-modifier': TagModifierPropertyType
+      'tag-modifier': TagModifierPropertyType,
+      'dynamic-component': DynamicComponentPropertyType
     }
 
     prop_type = types.get(type_name)

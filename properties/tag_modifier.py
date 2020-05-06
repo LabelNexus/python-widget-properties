@@ -6,6 +6,10 @@ class TagModifierPropertyType(BasePropertyType):
     super().__init__(classification, section, name, label, property_type_name, options, default, help_text)
     self.tag_type_modifier = tag_type_modifier
 
+  @property
+  def type_name(self):
+    return 'tag-modifier'
+
   @staticmethod
   def from_json(json):
     if json is None:
