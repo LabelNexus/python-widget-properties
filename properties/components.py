@@ -7,7 +7,7 @@ class ComponentsPropertyType(BasePropertyType):
   @staticmethod
   def options(components):
     return {
-      'categories': [components[0].category],
+      'categories': [components[0].category] if len(components) > 0 else [],
       'components': [x.to_json() for x in components]
     }
 
