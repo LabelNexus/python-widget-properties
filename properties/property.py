@@ -86,4 +86,5 @@ class Property:
     }
 
   def read(self, data):
+    print(f'Prop Read: {self.name}',flush=True)
     return self.property_type.read(data)

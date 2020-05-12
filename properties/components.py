@@ -20,10 +20,16 @@ class ComponentsPropertyType(BasePropertyType):
     return 'components'
 
   def read(self, data):
+#    print(f'Components Property: {self.property.__dict__}\n',flush=True)
+    print(f'CS Property Name: {self.property.name}',flush=True)
+#    print(f'Data: {data}\n',flush=True)
     val = super().read(data)
+    print(f'val: {val}',flush=True)
+#    print(f'Val: {val}\n',flush=True)
 
     components = []
     for c in val:
+      print(f'c: {c}',flush=True)
       comp_values = {}
 
       component_type = c.get('componentType', '__NOTYPE__')
