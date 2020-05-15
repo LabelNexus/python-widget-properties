@@ -9,24 +9,24 @@ class DynamicComponentsPropertyType(BasePropertyType):
     return 'dynamic-components'
 
   def read(self, data):
-#    print(f'Components Property: {self.property.__dict__}\n',flush=True)
-    print(f'DCS Property Name: {self.property.name}',flush=True)
-#    print(f'Data: {data}\n',flush=True)
     val = super().read(data)
     if val is None:
       val = []
-#    print(f'Val: {val}\n',flush=True)
 
     components = []
+
+    #data is the full version data
     for c in val:
       comp_values = {}
 
+      print(f'\n\nC: {c}\n\n',flush=True)
       component_type = c.get('componentType', '__NOTYPE__')
       component_data = c.get('componentData', {})
       component_json = next((x for x in self.property.options.get('components', []) if x['type'] == component_type), None)
+      component_json['properties'] = c.get('properties',[])
       if component_json:
         from ..components import Components
-        component = Components.BaseComponent.from_json(component_json)
+        component = Components.DynamicComponent.from_json(component_json)
         component_data = component.read(component_data)
 
         display_name = component.label
@@ -35,7 +35,6 @@ class DynamicComponentsPropertyType(BasePropertyType):
           display_name = display_name + ' - ' + str(additional_display['en-us'])
         elif additional_display:
           display_name = display_name + ' - ' + str(additional_display)
-
 
         result = {
           'componentType': component.component_type,

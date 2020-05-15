@@ -32,6 +32,7 @@ class Property:
 
   @staticmethod
   def from_json(json):
+    print(f'JSON TYPE: {json}',flush=True)
     if json is None:
       return None
 
@@ -86,5 +87,4 @@ class Property:
     }
 
   def read(self, data):
-    print(f'Prop Read: {self.name}',flush=True)
     return self.property_type.read(data)
