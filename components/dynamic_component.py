@@ -28,8 +28,6 @@ class DynamicComponent(BaseComponent):
 
   @staticmethod
   def from_json(json):
-    print(f'\nDynamic Component from_json: {json}\n',flush=True)
-    print(f'Properties: {json.get("properties",[])}\n',flush=True)
     return DynamicComponent( \
       json.get('type'), \
       json.get('section'), \
@@ -43,14 +41,9 @@ class DynamicComponent(BaseComponent):
 
   def read(self, data):
     result_data = {}
-    print(f'Data: {data}\n',flush=True)
     for prop in self.properties:
-      print(prop.name,flush=True)
-      print(data.get(prop.name, None),flush=True)
-      print(prop.__dict__,flush=True)
       result_data[prop.name] = prop.read(data)
 
-    print('done',flush=True)
     result_data = trigger_read_handlers(self.__class__, result_data)
 
     return result_data

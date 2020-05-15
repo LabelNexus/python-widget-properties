@@ -27,7 +27,7 @@ class DynamicComponentPropertyType(BasePropertyType):
 
     if component_json:
       from ..components import Components
-      component = Components.BaseComponent.from_json(component_json)
+      component = Components.DynamicComponent.from_json(component_json)
       component_data = component.read(component_data)
       result = {
         'componentType': component.component_type,

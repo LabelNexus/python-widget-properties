@@ -19,7 +19,6 @@ class DynamicComponentsPropertyType(BasePropertyType):
     for c in val:
       comp_values = {}
 
-      print(f'\n\nC: {c}\n\n',flush=True)
       component_type = c.get('componentType', '__NOTYPE__')
       component_data = c.get('componentData', {})
       component_json = next((x for x in self.property.options.get('components', []) if x['type'] == component_type), None)
@@ -39,7 +38,9 @@ class DynamicComponentsPropertyType(BasePropertyType):
         result = {
           'componentType': component.component_type,
           'componentData': component_data,
-          'displayName': display_name
+          'displayName': display_name,
+          'versionId': component.component_set_version_id,
+          'componentSetId': component.component_set_id
         }
 
         display_name_template = None

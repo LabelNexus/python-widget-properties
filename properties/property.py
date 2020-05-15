@@ -32,7 +32,6 @@ class Property:
 
   @staticmethod
   def from_json(json):
-    print(f'JSON TYPE: {json}',flush=True)
     if json is None:
       return None
 
