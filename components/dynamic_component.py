@@ -11,8 +11,6 @@ class DynamicComponent(BaseComponent):
     self.component_set_version_id = version_id
 
   def to_json(self):
-    print('to json',flush=True)
-    print(f'Self: {self.__dict__}',flush=True)
     return {
       'type': self.component_type,
       'section': self.section,

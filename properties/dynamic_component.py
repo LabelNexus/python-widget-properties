@@ -21,40 +21,45 @@ class DynamicComponentPropertyType(BasePropertyType):
 
     component_data = val.get('componentData', {})
     component_json = next((x for x in self.property.options.get('components', []) if x['type'] == component_type), None)
-    if component_type in g.all_components:
-      component_def = g.all_components[component_type]
-      if component_def:
-        component_def['versionId']=component_json.get('versionId')
+    return DynamicComponentPropertyType.get_component_data(component_type, component_data, component_json)
 
-        from ..components import Components
-        component = Components.DynamicComponent.from_json(component_def)
-        component_data = component.read(component_data)
-        result = {
-          'componentType': component.component_type,
-          'componentData': component_data,
-          'displayName': component.component_type
-        }
-
-        display_name_template = None
-        if component.display_name is not None and '{{' in component.display_name:
-          display_name_template = component.display_name
-
-        if component.component_type in g.all_components:
-          component_meta = g.all_components.get(component.component_type, {})
-          # Flag the component as being used so widget proxy can update component set namespace version table
-          component_meta.update({'isUsed': True})
-
-          result['componentTemplate'] = component_def.get('template', '')
-          display_name_template = component_def.get('displayNameTemplate')
-
-        if display_name_template:
-          rtemplate = Environment(loader=BaseLoader).from_string(display_name_template)
-          result['displayName'] = rtemplate.render(**result)
-    else:
-      result = {
+  @staticmethod
+  def get_component_data(component_type, component_data, component_json):
+    component_def = g.all_components.get(component_type, None)
+    if component_def is None:
+      return {
         'componentType': 'None',
         'componentData': {},
         'displayName': 'None'
       }
+
+    component_def['versionId']=component_json.get('versionId')
+
+    from ..components import Components
+    component = Components.DynamicComponent.from_json(component_def)
+    component_data = component.read(component_data)
+    result = {
+      'componentType': component.component_type,
+      'componentData': component_data,
+      'displayName': component.display_name,
+      'versionId': component.component_set_version_id,
+      'componentSetId': component.component_set_id
+    }
+
+    display_name_template = None
+    if component.display_name is not None and '{{' in component.display_name:
+      display_name_template = component.display_name
+
+    if component.component_type in g.all_components:
+      component_meta = g.all_components.get(component.component_type, {})
+      # Flag the component as being used so widget proxy can update component set namespace version table
+      component_meta.update({'isUsed': True})
+
+      result['componentTemplate'] = component_def.get('template', '')
+      display_name_template = component_def.get('displayNameTemplate')
+
+    if display_name_template:
+      rtemplate = Environment(loader=BaseLoader).from_string(display_name_template)
+      result['displayName'] = rtemplate.render(**result)
 
     return result
