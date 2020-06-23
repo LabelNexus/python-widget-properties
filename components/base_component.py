@@ -4,7 +4,7 @@ from ..properties import Properties
 import os
 
 class BaseComponent:
-  def __init__(self, component_type, category, section, label, display_name, icon_url, properties, display_name_template=None):
+  def __init__(self, component_type, category, section, label, display_name, icon_url, properties, display_name_template=None, position='right'):
     self.component_type = component_type
     self.category = category
     self.section = section
@@ -16,6 +16,8 @@ class BaseComponent:
     if self.properties is None:
       self.properties = []
 
+    self.position = position
+
   def to_json(self):
     return {
       'type': self.component_type,
@@ -25,7 +27,8 @@ class BaseComponent:
       'displayName': self.display_name,
       'displayNameTemplate': self.display_name_template,
       'icon': self.icon_url,
-      'properties': [x.to_json() for x in self.properties]
+      'properties': [x.to_json() for x in self.properties],
+      'position': self.position
     }
 
   @staticmethod
@@ -42,13 +45,15 @@ class BaseComponent:
         json.get('label'), \
         json.get('displayName'), \
         json.get('icon'), \
-        [Properties.Property.from_json(x) for x in json.get('properties', [])])
+        [Properties.Property.from_json(x) for x in json.get('properties', [])], \
+        position = json.get('position'))
 
   def read(self, data):
     result_data = {}
     for x in self.properties:
       result_data[x.name] = x.read(data)
 
+    print(self.label,flush=True)
     result_data = trigger_read_handlers(self.__class__, result_data)
 
     #if self.component_type == 'location':

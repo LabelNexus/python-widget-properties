@@ -9,48 +9,47 @@ class DynamicComponentPropertyType(BasePropertyType):
     return 'dynamic-component'
 
   def read(self, data):
-    val = super().read(data)
-
-    if not isinstance(val, dict):
-      raise ValidationException('Invalid Value: ' + str(val))
+    val = data.get(self.property.name, {})
 
     component_type = val.get('componentType', '__NOTYPE__')
 
     # The widget instance could've been created without valid component sets and set to None values.
     # Determine if that is the case and if we should re-evaluate the property
-    if component_type == 'None' and self.property.default.get('componentType') is not None:
+    if component_type == 'None' and self.property.default is not None and self.property.default.get('componentType') is not None:
       val = self.property.default
       component_type = val.get('componentType', '__NOTYPE__')
 
     component_data = val.get('componentData', {})
     component_json = next((x for x in self.property.options.get('components', []) if x['type'] == component_type), None)
+    if component_type in g.all_components:
+      component_def = g.all_components[component_type]
+      if component_def:
+        component_def['versionId']=component_json.get('versionId')
 
-    if component_json:
-      from ..components import Components
-      component = Components.DynamicComponent.from_json(component_json)
-      component_data = component.read(component_data)
-      result = {
-        'componentType': component.component_type,
-        'componentData': component_data,
-        'displayName': component.component_type
-      }
+        from ..components import Components
+        component = Components.DynamicComponent.from_json(component_def)
+        component_data = component.read(component_data)
+        result = {
+          'componentType': component.component_type,
+          'componentData': component_data,
+          'displayName': component.component_type
+        }
 
-      display_name_template = None
-      if component.display_name is not None and '{{' in component.display_name:
-        display_name_template = component.display_name
+        display_name_template = None
+        if component.display_name is not None and '{{' in component.display_name:
+          display_name_template = component.display_name
 
-      if component.component_type in g.all_components:
-        component_meta = g.all_components.get(component.component_type, {})
-        # Flag the component as being used so widget proxy can update component set namespace version table
-        component_meta.update({'isUsed': True})
+        if component.component_type in g.all_components:
+          component_meta = g.all_components.get(component.component_type, {})
+          # Flag the component as being used so widget proxy can update component set namespace version table
+          component_meta.update({'isUsed': True})
 
-        result['componentTemplate'] = component_meta.get('template', '')
-        display_name_template = component_meta.get('displayNameTemplate')
+          result['componentTemplate'] = component_def.get('template', '')
+          display_name_template = component_def.get('displayNameTemplate')
 
-      if display_name_template:
-        rtemplate = Environment(loader=BaseLoader).from_string(display_name_template)
-        result['displayName'] = rtemplate.render(**result)
-
+        if display_name_template:
+          rtemplate = Environment(loader=BaseLoader).from_string(display_name_template)
+          result['displayName'] = rtemplate.render(**result)
     else:
       result = {
         'componentType': 'None',

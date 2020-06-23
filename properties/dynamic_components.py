@@ -10,6 +10,8 @@ class DynamicComponentsPropertyType(BasePropertyType):
 
   def read(self, data):
     val = super().read(data)
+    print(f'Data: {data}',flush=True)
+    print(f'Val: {val}',flush=True)
     if val is None:
       val = []
 
@@ -40,7 +42,8 @@ class DynamicComponentsPropertyType(BasePropertyType):
           'componentData': component_data,
           'displayName': display_name,
           'versionId': component.component_set_version_id,
-          'componentSetId': component.component_set_id
+          'componentSetId': component.component_set_id,
+          'position': self.property.options.get('position', 'right')
         }
 
         display_name_template = None

@@ -5,16 +5,14 @@ from ..properties import Properties
 import os
 
 class DynamicComponent(BaseComponent):
-  def __init__(self, component_type, section, label, display_name, icon_url, properties, component_set_id, version_id):
-    super().__init__(component_type, None, section, label, display_name, icon_url, properties)
+  def __init__(self, component_type, section, label, display_name, icon_url, properties, component_set_id, version_id, position='left'):
+    super().__init__(component_type, None, section, label, display_name, icon_url, properties, position=position)
     self.component_set_id = component_set_id
     self.component_set_version_id = version_id
-    self.icon_url = 'a'
-    self.properties = properties
-    if self.properties is None:
-      self.properties = []
 
   def to_json(self):
+    print('to json',flush=True)
+    print(f'Self: {self.__dict__}',flush=True)
     return {
       'type': self.component_type,
       'section': self.section,
