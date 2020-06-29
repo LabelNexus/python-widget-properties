@@ -11,7 +11,7 @@ class BaseComponent:
     self.label = label
     self.display_name = display_name
     self.display_name_template = display_name_template
-    self.icon_url = 'a'
+    self.icon_url = 'a' if icon_url is None else icon_url
     self.properties = properties
     if self.properties is None:
       self.properties = []

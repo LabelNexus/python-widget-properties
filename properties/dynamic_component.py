@@ -39,11 +39,13 @@ class DynamicComponentPropertyType(BasePropertyType):
     component = Components.DynamicComponent.from_json(component_def)
     component_data = component.read(component_data)
     result = {
+      'id': component.id,
       'componentType': component.component_type,
       'componentData': component_data,
-      'displayName': component.display_name,
+      'displayName': component.component_type,
       'versionId': component.component_set_version_id,
-      'componentSetId': component.component_set_id
+      'componentSetId': component.component_set_id,
+      'icon': component.icon_url
     }
 
     display_name_template = None
