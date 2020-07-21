@@ -39,7 +39,6 @@ class ComponentPropertyType(BasePropertyType):
     if component_json:
       from ..components import Components
       component = Components.BaseComponent.from_json(component_json)
-      print(f'\n\nComponent: {component.__dict__}',flush=True)
       component_data = component.read(component_data)
       result = {
         'componentType': component.component_type,
