@@ -31,7 +31,7 @@ class ComponentsPropertyType(BasePropertyType):
       component_json = next((x for x in self.property.options.get('components', []) if x['type'] == component_type), None)
       if component_json:
         from ..components import Components
-        component = Components.BaseComponent.from_json(component_json)
+        component = Components.DynamicComponent.from_json(component_json)
         component_data = component.read(component_data)
 
         display_name = component.label
@@ -43,9 +43,13 @@ class ComponentsPropertyType(BasePropertyType):
 
 
         result = {
+          'id': component.id,
           'componentType': component.component_type,
           'componentData': component_data,
-          'displayName': display_name
+          'displayName': display_name,
+          'versionId': component.component_set_version_id,
+          'componentSetId': component.component_set_id,
+          'icon': component.icon_url
         }
 
         display_name_template = None
