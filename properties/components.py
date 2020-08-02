@@ -41,15 +41,14 @@ class ComponentsPropertyType(BasePropertyType):
         elif additional_display:
           display_name = display_name + ' - ' + str(additional_display)
 
-
         result = {
-          'id': component.id,
-          'componentType': component.component_type,
-          'componentData': component_data,
-          'displayName': display_name,
-          'versionId': component.component_set_version_id,
-          'componentSetId': component.component_set_id,
-          'icon': component.icon_url
+          'id': c.get('id'),
+          'componentType': c.get('componentType'),
+          'componentData': c.get('componentData',{}),
+          'displayName': c.get('displayName'),
+          'versionId': c.get('versionId', component.component_set_version_id),
+          'componentSetId': c.get('componentSetId', component.component_set_id),
+          'icon': c.get('icon')
         }
 
         display_name_template = None

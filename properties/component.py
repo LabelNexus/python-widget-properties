@@ -39,11 +39,15 @@ class ComponentPropertyType(BasePropertyType):
     if component_json:
       from ..components import Components
       component = Components.DynamicComponent.from_json(component_json)
-      component_data = component.read(component_data)
+
       result = {
-        'componentType': component.component_type,
-        'componentData': component_data,
-        'displayName': component.component_type
+        'id': val.get('id'),
+        'componentType': val.get('componentType'),
+        'componentData': val.get('componentData',{}),
+        'displayName': val.get('componentType'),
+        'versionId': val.get('versionId', component.component_set_version_id),
+        'componentSetId': val.get('componentSetId', component.component_set_id),
+        'icon': component.icon_url
       }
 
       display_name_template = None
