@@ -7,7 +7,7 @@ class ComponentsPropertyType(BasePropertyType):
   @staticmethod
   def options(components):
     return {
-      'categories': [components[0].category],
+      'categories': [components[0].category] if len(components) > 0 else [],
       'components': [x.to_json() for x in components]
     }
 
@@ -31,7 +31,7 @@ class ComponentsPropertyType(BasePropertyType):
       component_json = next((x for x in self.property.options.get('components', []) if x['type'] == component_type), None)
       if component_json:
         from ..components import Components
-        component = Components.BaseComponent.from_json(component_json)
+        component = Components.DynamicComponent.from_json(component_json)
         component_data = component.read(component_data)
 
         display_name = component.label
@@ -41,11 +41,14 @@ class ComponentsPropertyType(BasePropertyType):
         elif additional_display:
           display_name = display_name + ' - ' + str(additional_display)
 
-
         result = {
-          'componentType': component.component_type,
-          'componentData': component_data,
-          'displayName': display_name
+          'id': c.get('id'),
+          'componentType': c.get('componentType'),
+          'componentData': c.get('componentData',{}),
+          'displayName': c.get('displayName'),
+          'versionId': c.get('versionId', component.component_set_version_id),
+          'componentSetId': c.get('componentSetId', component.component_set_id),
+          'icon': c.get('icon')
         }
 
         display_name_template = None

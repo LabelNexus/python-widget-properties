@@ -15,3 +15,5 @@ class Properties:
   from .page_link import PageLinkPropertyType
   from .code_editor import CodeEditorPropertyType
   from .admin_launcher import AdminLauncherPropertyType
+  from .dynamic_component import DynamicComponentPropertyType
+  from .dynamic_components import DynamicComponentsPropertyType
