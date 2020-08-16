@@ -4,7 +4,7 @@ from ..properties import Properties
 import os
 
 class BaseComponent:
-  def __init__(self, component_type, category, section, label, display_name, icon_url, properties, display_name_template=None, position='right'):
+  def __init__(self, component_type, category, section, label, display_name, icon_url, properties, help_id=None, display_name_template=None, position='right'):
     self.component_type = component_type
     self.category = category
     self.section = section
@@ -16,6 +16,7 @@ class BaseComponent:
     if self.properties is None:
       self.properties = []
 
+    self.help_id = help_id
     self.position = position
 
   def to_json(self):
@@ -28,6 +29,7 @@ class BaseComponent:
       'displayNameTemplate': self.display_name_template,
       'icon': self.icon_url,
       'properties': [x.to_json() for x in self.properties],
+      'helpId': self.help_id,
       'position': self.position
     }
 
@@ -46,6 +48,8 @@ class BaseComponent:
         json.get('displayName'), \
         json.get('icon'), \
         [Properties.Property.from_json(x) for x in json.get('properties', [])], \
+        json.get('helpId'), \
+        json.get('displayNameTemplate'), \
         position = json.get('position'))
 
   def read(self, data):
