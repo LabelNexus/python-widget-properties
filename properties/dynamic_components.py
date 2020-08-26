@@ -18,11 +18,12 @@ class DynamicComponentsPropertyType(BasePropertyType):
 
       component_type = c.get('componentType', '__NOTYPE__')
       component_data = c.get('componentData', {})
+      component_id = c.get('id', None)
       component_json = next((x for x in self.property.options.get('components', []) if x['type'] == component_type), None)
       if component_json is None:
         raise ValidationException('Invalid Dynamic Component Value: ' + component_type)
 
-      components.append(DynamicComponentPropertyType.get_component_data(component_type, component_data, component_json))
+      components.append(DynamicComponentPropertyType.get_component_data(component_id, component_type, component_data, component_json))
 
     self.value = components
     return components

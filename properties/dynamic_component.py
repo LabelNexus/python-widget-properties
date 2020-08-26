@@ -19,12 +19,13 @@ class DynamicComponentPropertyType(BasePropertyType):
       val = self.property.default
       component_type = val.get('componentType', '__NOTYPE__')
 
+    component_id = val.get('id', None)
     component_data = val.get('componentData', {})
     component_json = next((x for x in self.property.options.get('components', []) if x['type'] == component_type), None)
-    return DynamicComponentPropertyType.get_component_data(component_type, component_data, component_json)
+    return DynamicComponentPropertyType.get_component_data(component_id, component_type, component_data, component_json)
 
   @staticmethod
-  def get_component_data(component_type, component_data, component_json):
+  def get_component_data(component_id, component_type, component_data, component_json):
     component_def = g.all_components.get(component_type, None)
     if component_def is None:
       return {
@@ -33,6 +34,7 @@ class DynamicComponentPropertyType(BasePropertyType):
         'displayName': 'None'
       }
 
+    component_def['id'] = component_id
     component_def['versionId']=component_json.get('versionId')
 
     from ..components import Components

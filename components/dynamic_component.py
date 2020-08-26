@@ -8,7 +8,7 @@ import os
 class DynamicComponent(BaseComponent):
   def __init__(self, id, component_type, section, label, display_name, display_name_template, icon_url, properties, help_id, component_set_id, version_id, position='right'):
     super().__init__(component_type, None, section, label, display_name, icon_url, properties, help_id, display_name_template, position=position)
-    # This is used on the client only, just keep it as a string
+    # This is used on the client for updating a component, just keep it as a string
     self.id = id if id is not None else str(uuid.uuid4())
 
     self.component_set_id = component_set_id
