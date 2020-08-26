@@ -31,7 +31,6 @@ class DynamicComponent(BaseComponent):
 
   @staticmethod
   def from_json(json):
-    print(f'DC JSON: {json}',flush=True)
     return DynamicComponent( \
       json.get('id'), \
       json.get('type'), \
