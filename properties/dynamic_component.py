@@ -19,7 +19,7 @@ class DynamicComponentPropertyType(BasePropertyType):
       val = self.property.default
       component_type = val.get('componentType', '__NOTYPE__')
 
-    component_id = c.get('id', None)
+    component_id = val.get('id', None)
     component_data = val.get('componentData', {})
     component_json = next((x for x in self.property.options.get('components', []) if x['type'] == component_type), None)
     return DynamicComponentPropertyType.get_component_data(component_id, component_type, component_data, component_json)
