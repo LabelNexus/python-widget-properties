@@ -47,7 +47,8 @@ class ComponentPropertyType(BasePropertyType):
         'displayName': val.get('componentType'),
         'versionId': val.get('versionId', component.component_set_version_id),
         'componentSetId': val.get('componentSetId', component.component_set_id),
-        'icon': component.icon_url
+        'icon': component.icon_url,
+        'helpId': component.help_id
       }
 
       display_name_template = None
@@ -70,7 +71,8 @@ class ComponentPropertyType(BasePropertyType):
       result = {
         'componentType': 'None',
         'componentData': {},
-        'displayName': 'None'
+        'displayName': 'None',
+        'helpId': 'None'
       }
 
     return result
