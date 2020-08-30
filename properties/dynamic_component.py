@@ -31,7 +31,8 @@ class DynamicComponentPropertyType(BasePropertyType):
       return {
         'componentType': 'None',
         'componentData': {},
-        'displayName': 'None'
+        'displayName': 'None',
+        'helpId': 'None'
       }
 
     component_def['id'] = component_id
@@ -47,7 +48,8 @@ class DynamicComponentPropertyType(BasePropertyType):
       'displayName': component.component_type,
       'versionId': component.component_set_version_id,
       'componentSetId': component.component_set_id,
-      'icon': component.icon_url
+      'icon': component.icon_url,
+      'helpId': component.help_id
     }
 
     display_name_template = None
