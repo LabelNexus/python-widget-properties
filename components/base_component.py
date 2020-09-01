@@ -18,6 +18,8 @@ class BaseComponent:
 
     self.help_id = help_id
     self.position = position
+    self.component_set_id = None
+    self.component_set_version_id = None
 
   def to_json(self):
     return {
@@ -57,7 +59,6 @@ class BaseComponent:
     for x in self.properties:
       result_data[x.name] = x.read(data)
 
-    print(self.label,flush=True)
     result_data = trigger_read_handlers(self.__class__, result_data)
 
     #if self.component_type == 'location':
