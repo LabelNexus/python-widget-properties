@@ -41,11 +41,10 @@ class ComponentPropertyType(BasePropertyType):
       component = None
       if component_type == 'home':
         component = Components.BaseComponent.from_json(component_json)
-        component_data = component.read(component_data)
       else:
         component = Components.DynamicComponent.from_json(component_json)
-        if not bool(component_data):
-          component_data = component.read(component_data)
+
+      component_data = component.read(component_data)
 
       result = {
         'id': val.get('id'),
