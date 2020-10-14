@@ -45,7 +45,7 @@ class ComponentsPropertyType(BasePropertyType):
           'id': c.get('id'),
           'componentType': c.get('componentType'),
           'componentData': c.get('componentData',{}),
-          'displayName': c.get('displayName'),
+          'displayName': display_name,
           'versionId': c.get('versionId', component.component_set_version_id),
           'componentSetId': c.get('componentSetId', component.component_set_id),
           'icon': c.get('icon')
