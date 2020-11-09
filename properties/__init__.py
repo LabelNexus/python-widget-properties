@@ -17,3 +17,4 @@ class Properties:
   from .admin_launcher import AdminLauncherPropertyType
   from .dynamic_component import DynamicComponentPropertyType
   from .dynamic_components import DynamicComponentsPropertyType
+  from .font import FontPropertyType
