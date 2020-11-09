@@ -16,6 +16,7 @@ from .theme_color import ThemeColorPropertyType
 from .admin_launcher import AdminLauncherPropertyType
 from .dynamic_component import DynamicComponentPropertyType
 from .dynamic_components import DynamicComponentsPropertyType
+from .font import FontPropertyType
 from lumavate_exceptions import ValidationException
 
 class Property:
@@ -64,7 +65,8 @@ class Property:
       'admin-launcher': AdminLauncherPropertyType,
       'html-editor': HtmlEditorPropertyType,
       'dynamic-component': DynamicComponentPropertyType,
-      'dynamic-components': DynamicComponentsPropertyType
+      'dynamic-components': DynamicComponentsPropertyType,
+      'font': FontPropertyType
     }
 
     prop_type = types.get(type_name)
