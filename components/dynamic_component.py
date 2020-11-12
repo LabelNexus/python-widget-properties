@@ -20,7 +20,7 @@ class DynamicComponent(BaseComponent):
       'type': self.component_type,
       'section': self.section,
       'label': self.label,
-      'displayName': self.display_name,
+      'displayName': self.display_name if self.display_name else self.label,
       'displayNameTemplate': self.display_name_template,
       'icon': self.icon_url,
       'properties': [x.to_json() for x in self.properties],

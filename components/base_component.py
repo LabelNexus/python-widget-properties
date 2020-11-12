@@ -9,7 +9,7 @@ class BaseComponent:
     self.category = category
     self.section = section
     self.label = label
-    self.display_name = display_name
+    self.display_name = display_name if display_name else label
     self.display_name_template = display_name_template
     self.icon_url = 'a' if icon_url is None else icon_url
     self.properties = properties
@@ -27,7 +27,7 @@ class BaseComponent:
       'category': self.category,
       'section': self.section,
       'label': self.label,
-      'displayName': self.display_name,
+      'displayName': self.display_name if self.display_name else self.label,
       'displayNameTemplate': self.display_name_template,
       'icon': self.icon_url,
       'properties': [x.to_json() for x in self.properties],
