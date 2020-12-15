@@ -5,10 +5,11 @@ from jinja2 import Environment, BaseLoader
 
 class ComponentPropertyType(BasePropertyType):
   @staticmethod
-  def options(components):
+  def options(components, isRequired=False):
     return {
       'categories': [components[0].category],
-      'components': [x.to_json() for x in components]
+      'components': [x.to_json() for x in components],
+      'isRequired': isRequired
     }
 
   @staticmethod
