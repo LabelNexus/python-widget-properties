@@ -2,7 +2,6 @@ import json
 from flask import g
 from jinja2 import Environment, BaseLoader
 import copy
-import pyro
 from .properties import Properties
 from .components import Components
 from lumavate_signer import ValueHasher
