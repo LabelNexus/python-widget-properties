@@ -1,5 +1,10 @@
 
-import pyro
+# workaround for sharing between services and platform
+try:
+  import pyro
+except:
+  from ._settings import Settings as pyro
+
 from lumavate_signer import ValueHasher
 
 class PropertySigner:

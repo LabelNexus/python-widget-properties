@@ -3,12 +3,18 @@ from flask import g
 from jinja2 import Environment, BaseLoader
 import copy
 import pyro
-from lumavate_properties import Properties, Components
+from .properties import Properties
+from .components import Components
 from lumavate_signer import ValueHasher
 from lumavate_exceptions import ApiException, ValidationException, NotFoundException, InvalidOperationException
-from .models import PatchRequest
+from .patch_request import PatchRequest
 from .property_signer import PropertySigner
 
+# workaround for sharing between services and platform
+try:
+  import pyro
+except:
+  from ._settings import Settings as pyro
 
 class BasePropertyPatcher:
   def __init__(self, version_data, request_json):
