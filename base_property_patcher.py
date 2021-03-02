@@ -216,7 +216,7 @@ class BasePropertyPatcher:
 
     new_component['componentData'] = future_prop_data
 
-    return self._pack_component(new_componenet)
+    return self._pack_component(new_component)
 
   def _pack_component(self, new_component):
     return {
