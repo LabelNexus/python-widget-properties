@@ -28,8 +28,8 @@ class TextPropertyType(BasePropertyType):
     val = super().read(data)
 
     if self.required and (val is None or val == ''):
-      raise ValidationException(f'Field {self.name} is required')
+      raise ValidationException(f'Field {self.property.name} is required', api_field=self.property.name)
 
     if self.maxlength > 0 and val is not None and len(val) > self.maxlength:
-      raise ValidationException(f'Field {self.name} cannot be more than {self.maxlength} characters long.')
+      raise ValidationException(f'Field {self.property.name} cannot be more than {self.maxlength} characters long.', api_field=self.property.name)
     return val
