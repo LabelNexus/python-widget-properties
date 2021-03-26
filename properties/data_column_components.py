@@ -6,10 +6,11 @@ from lumavate_exceptions import ValidationException
 
 class DataColumnComponentsPropertyType(ComponentsPropertyType):
   @staticmethod
-  def options(components):
+  def options(components, is_primary=False):
     return {
       'categories': [components[0].category] if len(components) > 0 else [],
-      'components': [x.to_json() for x in components]
+      'components': [x.to_json() for x in components],
+      'isPrimary': is_primary
     }
 
   @staticmethod

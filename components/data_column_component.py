@@ -6,7 +6,7 @@ import os
 
 class DataColumnComponent(BaseComponent):
   def __init__(self, component_type, category, section, label, display_name, icon_url, properties, help_id=None, display_name_template=None, position='right'):
-    super().init(
+    super().__init__(
         component_type,
         category,
         section,
