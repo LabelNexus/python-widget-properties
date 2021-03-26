@@ -161,7 +161,7 @@ class BasePropertyPatcher:
       if component_type is None:
         component_type = self.patch_request.component.get('type')
       if self.is_component_valid(component_type):
-        component_def = self.get_component_def(componentType)
+        component_def = self.get_component_def(component_type)
         new_component['componentTemplate'] = component_def.get('template', '')
       patch_value = self._set_property_value(self.patch_request.parent_name, new_component)
 
