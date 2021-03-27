@@ -89,7 +89,7 @@ class BasePropertyPatcher:
         new_value = custom_result
 
       patch_value = {
-        'id': component['id'],
+        'id': component.get('id'),
         'componentData': {self.patch_request.property.name: new_value},
         'displayName': component['displayName']
       }
