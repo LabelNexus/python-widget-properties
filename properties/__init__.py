@@ -18,3 +18,4 @@ class Properties:
   from .dynamic_component import DynamicComponentPropertyType
   from .dynamic_components import DynamicComponentsPropertyType
   from .font import FontPropertyType
+  from .data_column_components import DataColumnComponentsPropertyType
