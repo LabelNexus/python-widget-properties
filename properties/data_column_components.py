@@ -1,6 +1,5 @@
 from jinja2 import Environment, BaseLoader
 from flask import g
-#from .base_property_type import BasePropertyType
 from .components import ComponentsPropertyType
 from lumavate_exceptions import ValidationException
 
