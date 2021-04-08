@@ -19,3 +19,9 @@ class DataColumnComponentsPropertyType(ComponentsPropertyType):
   @property
   def type_name(self):
     return 'data-column-components'
+
+  def read(self, data):
+    if not g.get('all_components'):
+      g.all_components = {}
+
+    return super().read(data)

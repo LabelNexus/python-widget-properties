@@ -7,6 +7,7 @@ from .checkbox import CheckboxPropertyType
 from .toggle import TogglePropertyType
 from .translated_text import TranslatedTextProperty
 from .dropdown import DropdownPropertyType
+from .dropdown_options import DropdownOptionsPropertyType
 from .multiselect import MultiselectPropertyType
 from .numeric import NumericPropertyType
 from .page_link import PageLinkPropertyType
@@ -58,6 +59,7 @@ class Property:
       'toggle': TogglePropertyType,
       'translated-text': TranslatedTextProperty,
       'dropdown': DropdownPropertyType,
+      'dropdown-options': DropdownOptionsPropertyType,
       'multiselect': MultiselectPropertyType,
       'numeric': NumericPropertyType,
       'page-link': PageLinkPropertyType,

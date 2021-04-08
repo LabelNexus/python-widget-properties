@@ -2,6 +2,7 @@ from .base_property_type import BasePropertyType
 from lumavate_exceptions import ValidationException
 
 class DropdownPropertyType(BasePropertyType):
+
   @staticmethod
   def options(options):
     if options is None:
