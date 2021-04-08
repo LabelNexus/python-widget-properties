@@ -19,3 +19,4 @@ class Properties:
   from .dynamic_components import DynamicComponentsPropertyType
   from .font import FontPropertyType
   from .data_column_components import DataColumnComponentsPropertyType
+  from .dropdown_options import DropdownOptionsPropertyType

@@ -26,7 +26,7 @@ class ComponentsPropertyType(BasePropertyType):
     for c in val:
       comp_values = {}
 
-      component_type = c.get('componentType', '__NOTYPE__')
+      component_type = c.get('componentType', c.get('type', '__NOTYPE__'))
       component_data = c.get('componentData', {})
       component_json = next((x for x in self.property.options.get('components', []) if x['type'] == component_type), None)
       if component_json:
