@@ -19,7 +19,7 @@ class BasePropertyPatcher:
   def __init__(self, version_data, request_json):
     self.patch_request = PatchRequest.from_json(request_json)
     self._request_json = copy.copy(request_json)
-    self._version_data = copy.copy(version_data)
+    self._version_data = version_data
     self._hasher = ValueHasher(pyro.get_setting('VALUE_HASHER_KEY'))
 
     self.component_selector_types = ['component', 'dynamic-component']
