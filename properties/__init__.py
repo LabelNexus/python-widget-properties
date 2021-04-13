@@ -20,3 +20,4 @@ class Properties:
   from .font import FontPropertyType
   from .data_column_components import DataColumnComponentsPropertyType
   from .dropdown_options import DropdownOptionsPropertyType
+  from .asset_select import AssetSelectPropertyType
