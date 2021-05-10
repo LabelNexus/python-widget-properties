@@ -39,7 +39,6 @@ class BasePropertyPatcher:
     return patched_version_data, delta_data
 
   def add(self):
-    print(f'ADDING',flush=True)
     if not self.patch_request.is_component:
       raise ValidationException('Only components can be added')
 
