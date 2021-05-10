@@ -21,3 +21,4 @@ class Properties:
   from .data_column_components import DataColumnComponentsPropertyType
   from .dropdown_options import DropdownOptionsPropertyType
   from .asset_select import AssetSelectPropertyType
+  from .asset_field import AssetFieldPropertyType
