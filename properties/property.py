@@ -20,6 +20,7 @@ from .dynamic_components import DynamicComponentsPropertyType
 from .data_column_components import DataColumnComponentsPropertyType
 from .font import FontPropertyType
 from .asset_select import AssetSelectPropertyType
+from .asset_field import AssetFieldPropertyType
 from lumavate_exceptions import ValidationException
 
 class Property:
@@ -52,6 +53,7 @@ class Property:
   def get_property_type(self, type_name):
     types = {
       'asset-select': AssetSelectPropertyType,
+      'asset-field': AssetFieldPropertyType,
       'text' : TextPropertyType,
       'color': ColorPropertyType,
       'image-upload': ImagePropertyType,
