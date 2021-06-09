@@ -47,7 +47,18 @@ class TextPropertyType(BasePropertyType):
         raise ValidationException(f'Field {self.property.name} must contain only letters.', api_field=self.property.name)
       if self.allowed_keys == 'alpha-numeric' and not val.isalnum():
         raise ValidationException(f'Field {self.property.name} must contain only letters and numbers.', api_field=self.property.name)
-      if self.allowed_keys == 'alpha-numeric-space' and not re.search('[a-zA-Z0-9 ]', val):
+      if self.allowed_keys == 'alpha-numeric-space' and not self.isAlphaNumericSpace(val):
         raise ValidationException(f'Field {self.property.name} must contain only letters, numbers, and spaces.', api_field=self.property.name)
+      if self.allowed_keys == 'alpha-numeric-extra' and not self.isAlphaNumericExtra(val):
+        raise ValidationException(f'Field {self.property.name} must contain only letters, numbers, space, dash, and underscore.', api_field=self.property.name)
 
     return val
+
+  def isAlphaNumericSpace(self, val):
+    return all(x.isalnum() or x.isspace() for x in val)
+
+  def isAlphaNumericExtra(self, val):
+    return all(x.isalnum() or x.isspace() or x=='-' or x=='_' for x in val)
+
+
+
