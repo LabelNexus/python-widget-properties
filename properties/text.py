@@ -37,20 +37,20 @@ class TextPropertyType(BasePropertyType):
     val = super().read(data)
 
     if self.required and (val is None or val == ''):
-      raise ValidationException(f'Field {self.property.name} is required', api_field=self.property.name)
+      raise ValidationException(f'Field is required', api_field=self.property.name)
 
     if self.maxlength > 0 and val is not None and len(val) > self.maxlength:
-      raise ValidationException(f'Field {self.property.name} cannot be more than {self.maxlength} characters long.', api_field=self.property.name)
+      raise ValidationException(f'Field cannot be more than {self.maxlength} characters long.', api_field=self.property.name)
 
     if self.allowed_keys != 'all':
       if self.allowed_keys == 'alpha' and not val.isalpha():
-        raise ValidationException(f'Field {self.property.name} must contain only letters.', api_field=self.property.name)
+        raise ValidationException(f'Field may contain only letters.', api_field=self.property.name)
       if self.allowed_keys == 'alpha-numeric' and not val.isalnum():
-        raise ValidationException(f'Field {self.property.name} must contain only letters and numbers.', api_field=self.property.name)
+        raise ValidationException(f'Field may contain only letters and numbers.', api_field=self.property.name)
       if self.allowed_keys == 'alpha-numeric-space' and not self.isAlphaNumericSpace(val):
-        raise ValidationException(f'Field {self.property.name} must contain only letters, numbers, and spaces.', api_field=self.property.name)
+        raise ValidationException(f'Field may contain only letters, numbers, and spaces.', api_field=self.property.name)
       if self.allowed_keys == 'alpha-numeric-extra' and not self.isAlphaNumericExtra(val):
-        raise ValidationException(f'Field {self.property.name} must contain only letters, numbers, space, dash, and underscore.', api_field=self.property.name)
+        raise ValidationException(f'Field may contain only letters, numbers, space, dash, and underscore.', api_field=self.property.name)
 
     return val
 
