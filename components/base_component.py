@@ -4,7 +4,19 @@ from ..properties import Properties
 import os
 
 class BaseComponent:
-  def __init__(self, component_type, category, section, label, display_name, icon_url, properties, help_id=None, display_name_template=None, position='right'):
+  def __init__(self,
+      component_type,
+      category,
+      section,
+      label,
+      display_name,
+      icon_url,
+      properties,
+      help_id=None,
+      display_name_template=None,
+      position='right',
+      tag_modifiers=True):
+
     self.component_type = component_type
     self.category = category
     self.section = section
@@ -21,6 +33,8 @@ class BaseComponent:
     self.component_set_id = None
     self.component_set_version_id = None
 
+    self.tag_modifiers = tag_modifiers
+
   def to_json(self):
     return {
       'type': self.component_type,
@@ -32,7 +46,8 @@ class BaseComponent:
       'icon': self.icon_url,
       'properties': [x.to_json() for x in self.properties],
       'helpId': self.help_id,
-      'position': self.position
+      'position': self.position,
+      'includeTagModifiers': self.tag_modifiers
     }
 
   @staticmethod
@@ -52,7 +67,8 @@ class BaseComponent:
         [Properties.Property.from_json(x) for x in json.get('properties', [])], \
         json.get('helpId'), \
         json.get('displayNameTemplate'), \
-        position = json.get('position'))
+        position = json.get('position'), \
+        tag_modifiers = json.get('includeTagModifiers', True))
 
   def read(self, data):
     result_data = {}
