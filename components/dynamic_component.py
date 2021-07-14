@@ -35,18 +35,18 @@ class DynamicComponent(BaseComponent):
   @staticmethod
   def from_json(json):
     return DynamicComponent( \
-      json.get('id'), \
-      json.get('type'), \
-      json.get('section'), \
-      json.get('label'), \
-      json.get('displayName'), \
-      json.get('displayNameTemplate'), \
-      json.get('icon'), \
-      [Properties.Property.from_json(x) for x in json.get('properties', [])], \
+      json.get('id'),
+      json.get('type'),
+      json.get('section'),
+      json.get('label'),
+      json.get('displayName'),
+      json.get('displayNameTemplate'),
+      json.get('icon'),
+      [Properties.Property.from_json(x) for x in json.get('properties', [])],
       json.get('helpId'),
-      json.get('componentSetId'), \
+      json.get('componentSetId'),
       json.get('versionId'),
-      json.get('position', 'right')\
+      json.get('position', 'right'),
       json.get('includeTagModifiers', True)
     )
 
