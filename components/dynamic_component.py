@@ -34,7 +34,7 @@ class DynamicComponent(BaseComponent):
 
   @staticmethod
   def from_json(json):
-    return DynamicComponent( \
+    return DynamicComponent(
       json.get('id'),
       json.get('type'),
       json.get('section'),
