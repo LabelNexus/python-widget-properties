@@ -6,8 +6,10 @@ from ..properties import Properties
 import os
 
 class DynamicComponent(BaseComponent):
-  def __init__(self, id, component_type, section, label, display_name, display_name_template, icon_url, properties, help_id, component_set_id, version_id, position='right'):
-    super().__init__(component_type, None, section, label, display_name, icon_url, properties, help_id, display_name_template, position=position)
+  def __init__(self, id, component_type, section, label, display_name, display_name_template, icon_url, properties, help_id, component_set_id, version_id, position='right',
+      tag_modifiers=True):
+    super().__init__(component_type, None, section, label, display_name, icon_url, properties, help_id, display_name_template, position=position,
+        tag_modifiers=tag_modifiers)
     # This is used on the client for updating a component, just keep it as a string
     self.id = id if id is not None else str(uuid.uuid4())
 
@@ -26,24 +28,26 @@ class DynamicComponent(BaseComponent):
       'properties': [x.to_json() for x in self.properties],
       'helpId': self.help_id,
       'componentSetId': self.component_set_id,
-      'versionId': self.component_set_version_id
+      'versionId': self.component_set_version_id,
+      'includeTagModifiers': self.tag_modifiers
     }
 
   @staticmethod
   def from_json(json):
-    return DynamicComponent( \
-      json.get('id'), \
-      json.get('type'), \
-      json.get('section'), \
-      json.get('label'), \
-      json.get('displayName'), \
-      json.get('displayNameTemplate'), \
-      json.get('icon'), \
-      [Properties.Property.from_json(x) for x in json.get('properties', [])], \
+    return DynamicComponent(
+      json.get('id'),
+      json.get('type'),
+      json.get('section'),
+      json.get('label'),
+      json.get('displayName'),
+      json.get('displayNameTemplate'),
+      json.get('icon'),
+      [Properties.Property.from_json(x) for x in json.get('properties', [])],
       json.get('helpId'),
-      json.get('componentSetId'), \
+      json.get('componentSetId'),
       json.get('versionId'),
-      json.get('position', 'right')\
+      json.get('position', 'right'),
+      json.get('includeTagModifiers', True)
     )
 
   def read(self, data):
