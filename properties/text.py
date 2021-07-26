@@ -42,22 +42,35 @@ class TextPropertyType(BasePropertyType):
       raise ValidationException(f'Field cannot be more than {self.maxlength} characters long.', api_field=self.property.name)
 
     if self.allowed_keys != 'all':
-      if self.allowed_keys == 'alpha' and not val.isalpha():
+      if self.allowed_keys == 'alpha' and not self.is_alpha(val):
         raise ValidationException(f'Field may contain only letters.', api_field=self.property.name)
-      if self.allowed_keys == 'alpha-numeric' and not val.isalnum():
+      if self.allowed_keys == 'alpha-numeric' and not val.is_alpha_numeric():
         raise ValidationException(f'Field may contain only letters and numbers.', api_field=self.property.name)
-      if self.allowed_keys == 'alpha-numeric-space' and not self.isAlphaNumericSpace(val):
+      if self.allowed_keys == 'alpha-numeric-space' and not self.is_alpha_numeric_space(val):
         raise ValidationException(f'Field may contain only letters, numbers, and spaces.', api_field=self.property.name)
-      if self.allowed_keys == 'alpha-numeric-extra' and not self.isAlphaNumericExtra(val):
+      if self.allowed_keys == 'alpha-numeric-extra' and not self.is_alpha_numeric_extra(val):
         raise ValidationException(f'Field may contain only letters, numbers, space, dash, and underscore.', api_field=self.property.name)
 
     return val
 
-  def isAlphaNumericSpace(self, val):
-    return all(x.isalnum() or x.isspace() for x in val)
+  def is_alpha(self, val):
+    return self.is_ascii(val) and val.isalpha()
 
-  def isAlphaNumericExtra(self, val):
-    return all(x.isalnum() or x.isspace() or x=='-' or x=='_' for x in val)
+  def is_alpha_numeric(self, val):
+    return self.is_ascii(val) and val.isalnum()
 
+  def is_alpha_numeric_space(self, val):
+    return self.is_ascii(val) and all(x.isalnum() or x.isspace() for x in val)
+
+  def is_alpha_numeric_extra(self, val):
+    return self.is_ascii(val) and all(x.isalnum() or x.isspace() or x=='-' or x=='_' for x in val)
+
+  def is_ascii(self, val):
+    try:
+      val.encode('ascii', 'strict')
+    except Exception as e:
+      return False
+
+    return True
 
 
