@@ -22,3 +22,4 @@ class Properties:
   from .dropdown_options import DropdownOptionsPropertyType
   from .asset_select import AssetSelectPropertyType
   from .asset_field import AssetFieldPropertyType
+  from .dynamic_asset_select import DynamicAssetSelectPropertyType
