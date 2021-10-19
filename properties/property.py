@@ -17,6 +17,7 @@ from .theme_color import ThemeColorPropertyType
 from .admin_launcher import AdminLauncherPropertyType
 from .dynamic_component import DynamicComponentPropertyType
 from .dynamic_components import DynamicComponentsPropertyType
+from .dynamic_asset_select import DynamicAssetSelectPropertyType
 from .data_column_components import DataColumnComponentsPropertyType
 from .font import FontPropertyType
 from .asset_select import AssetSelectPropertyType
@@ -73,9 +74,9 @@ class Property:
       'html-editor': HtmlEditorPropertyType,
       'dynamic-component': DynamicComponentPropertyType,
       'dynamic-components': DynamicComponentsPropertyType,
+      'dynamic-asset-select': DynamicAssetSelectPropertyType,
       'data-column-components': DataColumnComponentsPropertyType,
       'font': FontPropertyType,
-
     }
 
     prop_type = types.get(type_name)
