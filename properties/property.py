@@ -22,6 +22,7 @@ from .data_column_components import DataColumnComponentsPropertyType
 from .font import FontPropertyType
 from .asset_select import AssetSelectPropertyType
 from .asset_field import AssetFieldPropertyType
+from .file_upload import FileUploadPropertyType
 from lumavate_exceptions import ValidationException
 
 class Property:
@@ -77,6 +78,7 @@ class Property:
       'dynamic-asset-select': DynamicAssetSelectPropertyType,
       'data-column-components': DataColumnComponentsPropertyType,
       'font': FontPropertyType,
+      'file-upload': FileUploadPropertyType
     }
 
     prop_type = types.get(type_name)
