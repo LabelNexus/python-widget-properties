@@ -27,6 +27,15 @@ class FileUploadPropertyType(BasePropertyType):
 
     return self.property.options.get('allowedMimeTypes', '*')
 
+  @property
+  def max_file_size(self):
+    if self.property.options is None:
+      return None
+
+    size = self.property.options.get('maxFileSize')
+    if size is not None:
+      return int(size)
+
   def read(self, data):
     val = super().read(data)
 
@@ -37,5 +46,13 @@ class FileUploadPropertyType(BasePropertyType):
       mime_types = [t.lower().strip() for t in self.allowed_mime_types.split(',')]
       if val.get('filetype','').lower() not in mime_types:
         raise ValidationException(f'Error Uploading: {val.get("filename","")} - File type is not supported.', api_field=self.property.name)
+
+    if self.allowed_mime_types.strip() != '*':
+      mime_types = [t.lower().strip() for t in self.allowed_mime_types.split(',')]
+      if val.get('filetype','').lower() not in mime_types:
+        raise ValidationException(f'Error Uploading: {val.get("filename","")} - File type is not supported.', api_field=self.property.name)
+
+    if self.max_file_size is not None and  val.get('size') > self.max_file_size:
+      raise ValidationException(f'Error Uploading: {val.get("filename","")} - File is too large.', api_field=self.property.name)
 
     return val
