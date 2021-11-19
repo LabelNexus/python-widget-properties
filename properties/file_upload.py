@@ -45,7 +45,7 @@ class FileUploadPropertyType(BasePropertyType):
 
     if self.allowed_extensions.strip() != '*':
       extensions = [t.lower().strip() for t in self.allowed_extensions.split(',')]
-      if val.get('extension','').lower() not in extensions:
+      if '.{}'.format(val.get('extension','').lower()) not in extensions:
         raise ValidationException(f'File extension: {val.get("extension")} is not supported.', api_field=self.property.name)
 
     if self.allowed_mime_types.strip() != '*':
