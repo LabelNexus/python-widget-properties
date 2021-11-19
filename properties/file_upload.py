@@ -38,21 +38,22 @@ class FileUploadPropertyType(BasePropertyType):
 
   def read(self, data):
     val = super().read(data)
+    print(f'VAL: {val}',flush=True)
 
     if self.required and not val.get('filename',''):
         raise ValidationException(f'File is required.', api_field=self.property.name)
 
-    if self.allowed_mime_types.strip() != '*':
-      mime_types = [t.lower().strip() for t in self.allowed_mime_types.split(',')]
-      if val.get('filetype','').lower() not in mime_types:
-        raise ValidationException(f'Error Uploading: {val.get("filename","")} - File type is not supported.', api_field=self.property.name)
+    if self.allowed_extensions.strip() != '*':
+      extensions = [t.lower().strip() for t in self.allowed_extensions.split(',')]
+      if val.get('extension','').lower() not in extensions:
+        raise ValidationException(f'File extension: {val.get('extension')} is not supported.', api_field=self.property.name)
 
     if self.allowed_mime_types.strip() != '*':
       mime_types = [t.lower().strip() for t in self.allowed_mime_types.split(',')]
       if val.get('filetype','').lower() not in mime_types:
-        raise ValidationException(f'Error Uploading: {val.get("filename","")} - File type is not supported.', api_field=self.property.name)
+        raise ValidationException(f'File type: {val.get("filetype")} is not supported.', api_field=self.property.name)
 
     if self.max_file_size is not None and  val.get('size') > self.max_file_size:
-      raise ValidationException(f'Error Uploading: {val.get("filename","")} - File is too large.', api_field=self.property.name)
+      raise ValidationException(f'File is too large.', api_field=self.property.name)
 
     return val
