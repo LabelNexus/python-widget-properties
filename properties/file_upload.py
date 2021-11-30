@@ -38,7 +38,6 @@ class FileUploadPropertyType(BasePropertyType):
 
   def read(self, data):
     val = super().read(data)
-    print(f'VAL: {val}',flush=True)
 
     if self.required and not val.get('filename',''):
         raise ValidationException(f'File is required.', api_field=self.property.name)
