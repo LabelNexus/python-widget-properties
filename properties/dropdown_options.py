@@ -10,8 +10,8 @@ class DropdownOptionsPropertyType(BasePropertyType):
     val = data.get(self.property.name)
     dropdown_value = val.get('value', {})
     dropdown_options = self.property.options.get('values', {})
-
     check_hash = { str(x): x for x in dropdown_options.keys() }
+    print(f'OPTIONS: {check_hash}',flush=True)
     check_hash['None'] = None
 
     if dropdown_value is None:
