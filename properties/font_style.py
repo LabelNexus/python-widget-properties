@@ -11,7 +11,7 @@ class FontStylePropertyType(BasePropertyType):
     if self.property.options is None:
       return False
 
-    return self.property.options.get('includeUnderline', False))
+    return self.property.options.get('includeUnderline', False)
 
   @property
   def default_font_family(self):
