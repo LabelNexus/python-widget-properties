@@ -7,13 +7,6 @@ class FontStylePropertyType(BasePropertyType):
     return 'font-style'
 
   @property
-  def include_underline(self):
-    if self.property.options is None:
-      return False
-
-    return self.property.options.get('includeUnderline', False)
-
-  @property
   def default_font_family(self):
     if self.property.default is None:
       return 'primary'
@@ -30,9 +23,17 @@ class FontStylePropertyType(BasePropertyType):
   @property
   def default_font_color(self):
     if self.property.default is None:
-      return '#000000'
+      return 'var(--primary-color)'
 
-    return self.property.default.get('fontColor', '#000000')
+    return self.property.default.get('fontColor', 'var(--primary-color)')
+
+  @property
+  def include_underline(self):
+    if self.property.options is None:
+      return False
+
+    return self.property.options.get('includeUnderline', False)
+
 
   def read(self, data):
     val = super().read(data)
