@@ -36,6 +36,6 @@ class PropertySigner:
   # these properties should be excluded from the signature
   @classmethod
   def filter_signature_properties(cls,prop):
-    excluded_keys = ['signature', 'hasComponentHelp', prop["name"]]
+    excluded_keys = ['signature', 'hasComponentHelp', prop["name"], 'isNew']
     return {k: v for k,v in prop.items() if k not in excluded_keys}
 
