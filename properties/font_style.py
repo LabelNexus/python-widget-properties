@@ -54,7 +54,7 @@ class FontStylePropertyType(BasePropertyType):
       val['fontFamily'] = self.default_font_family
 
     if not val.get('underline'):
-      val['underline'] = self.default_font_family
+      val['underline'] = self.default_underline
 
     return val
 
