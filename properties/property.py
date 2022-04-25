@@ -26,6 +26,7 @@ from .asset_field import AssetFieldPropertyType
 from .file_upload import FileUploadPropertyType
 from .email_list import EmailListPropertyType
 from .font_style import FontStylePropertyType
+from .font_style_selector import FontStyleSelectorPropertyType
 from lumavate_exceptions import ValidationException
 
 class Property:
@@ -84,7 +85,8 @@ class Property:
       'font': FontPropertyType,
       'file-upload': FileUploadPropertyType,
       'email-list': EmailListPropertyType,
-      'font-style': FontStylePropertyType
+      'font-style': FontStylePropertyType,
+      'font-style-selector': FontStyleSelectorPropertyType
     }
 
     prop_type = types.get(type_name)

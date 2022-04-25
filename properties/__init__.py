@@ -25,3 +25,4 @@ class Properties:
   from .dynamic_asset_select import DynamicAssetSelectPropertyType
   from .file_upload import FileUploadPropertyType
   from .font_style import FontStylePropertyType
+  from .font_style_selector import FontStyleSelectorPropertyType
