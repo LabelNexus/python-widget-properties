@@ -49,7 +49,7 @@ class FontStyleSelectorPropertyType(BasePropertyType):
       val = {}
   
     alignment = val.get('alignment', 'left')
-    if alignment != 'left' and alignment != 'center' and alignment != 'right':
+    if alignment not in ['left', 'center', 'right']:
       ValidationException(f'Alignment {alignment} is invalid ', api_field=self.property.name)
 
     if not val.get('fontSize'):
