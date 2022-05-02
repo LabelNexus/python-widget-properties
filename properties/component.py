@@ -15,8 +15,10 @@ class ComponentPropertyType(BasePropertyType):
     return base_options
 
   @staticmethod
-  def default(component):
-    return { 'componentType': component.component_type }
+  def default(component, data={}):
+    default_data = {}
+    default_data[component.component_type] = data
+    return { 'componentType': component.component_type, 'componentData': default_data }
 
   @property
   def type_name(self):
