@@ -15,7 +15,8 @@ class FontStyleSelectorPropertyType(BasePropertyType):
 
   @property
   def default_font_style(self):
-    return 'h1' if self.mode == 'text' else 'button'
+    mode_default = 'h1' if self.mode == 'text' else 'button'
+    return self.property.options.get('defaultStyle', mode_default)
 
   @property
   def default_font_family(self):
