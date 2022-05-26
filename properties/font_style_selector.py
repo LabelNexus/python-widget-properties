@@ -15,7 +15,8 @@ class FontStyleSelectorPropertyType(BasePropertyType):
 
   @property
   def default_font_style(self):
-    return 'h1' if self.mode == 'text' else 'button'
+    mode_default = 'h1' if self.mode == 'text' else 'button'
+    return self.property.options.get('defaultStyle', mode_default)
 
   @property
   def default_font_family(self):
@@ -52,25 +53,25 @@ class FontStyleSelectorPropertyType(BasePropertyType):
     if alignment not in ['left', 'center', 'right']:
       ValidationException(f'Alignment {alignment} is invalid ', api_field=self.property.name)
 
-    if not val.get('fontSize'):
+    if val.get('fontSize') is None:
       val['fontSize'] = self.default_font_size
 
-    if not val.get('fontColor'):
+    if val.get('fontColor') is None:
       val['fontColor'] = self.default_font_color
 
-    if not val.get('fontFamily'):
+    if val.get('fontFamily') is None:
       val['fontFamily'] = self.default_font_family
 
-    if not val.get('selectedStyle'):
+    if val.get('selectedStyle') is None:
       val['selectedStyle'] = self.default_font_style
 
-    if not val.get('bold'):
+    if val.get('bold') is None:
       val['bold'] = self.property.options.get('bold', {}).get('default', False)
 
-    if not val.get('italics'):
+    if val.get('italics') is None:
       val['italics'] = self.property.options.get('italics', {}).get('default', False)
 
-    if not val.get('alignment'):
+    if val.get('alignment') is None:
       val['alignment'] = self.property.options.get('alignment', {}).get('default', 'left')
 
     return val
