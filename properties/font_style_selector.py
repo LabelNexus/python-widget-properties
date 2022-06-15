@@ -20,28 +20,28 @@ class FontStyleSelectorPropertyType(BasePropertyType):
 
   @property
   def default_font_family(self):
-    default_value = f'var(--{self.default_font_style}-font-family)'
-    if self.property.default is None:
-      return default_value
-
-    return self.property.default.get('fontFamily', default_value)
+    default_style = self.default_font_style if self.default_font_style != 'custom' else 'main'
+    default_value = f'var(--{default_style}-font-family)'
+    
+    return default_value
 
   @property
   def default_font_size(self):
     default_value = f'var(--{self.default_font_style}-font-size)'
-    if self.property.default is None:
+    if self.default_font_style != 'custom':
       return default_value
-
-    return self.property.default.get('fontSize', default_value)
+    
+    default_value = 16
+    return str(self.property.options.get('defaultCustomFontSize', default_value)) + 'px'
 
   @property
   def default_font_color(self):
     default_value = f'var(--{self.default_font_style}-font-color)'
-    if self.property.default is None:
+    if self.default_font_style != 'custom':
       return default_value
-
-    return self.property.default.get('fontColor', default_value)
-
+    
+    default_value = 'var(--dark-color)'
+    return self.property.options.get('defaultCustomFontColor', default_value)
 
   def read(self, data):
     val = super().read(data)
