@@ -5,16 +5,20 @@ from jinja2 import Environment, BaseLoader
 
 class ComponentPropertyType(BasePropertyType):
   @staticmethod
-  def options(components, isRequired=False):
-    return {
+  def options(components, isRequired=False, base_options={}):
+    base_options.update({
       'categories': [components[0].category],
       'components': [x.to_json() for x in components],
       'isRequired': isRequired
-    }
+    })
+    
+    return base_options
 
   @staticmethod
-  def default(component):
-    return { 'componentType': component.component_type }
+  def default(component, data={}):
+    default_data = {}
+    default_data[component.component_type] = data
+    return { 'componentType': component.component_type, 'componentData': default_data }
 
   @property
   def type_name(self):
