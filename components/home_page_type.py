@@ -45,10 +45,10 @@ such as when a browser is rendering the favicon
     """
 
     return [
-      Properties.Property(None, 'App Manifest', 'displayName', 'Name', 'text', default='Home', help_text=dn_help_text),
-      Properties.Property(None, 'App Manifest', 'shortName', 'Short Name', 'text', default='Home', help_text=sn_help_text),
-      Properties.Property(None, 'App Manifest', 'backgroundColor', 'Background Color', 'color', default='#fff', help_text=bc_help_text),
-      Properties.Property(None, 'App Manifest', 'themeColor', 'Theme Color', 'color', default='#fff', help_text=tc_help_text),
-      Properties.Property(None, 'App Manifest', 'icon', 'Splash Screen Icon', 'image-upload', help_text=ic_help_text),
-      Properties.Property(None, 'App Manifest', 'favicon', 'Favicon', 'image-upload', help_text=fc_help_text)
+      Properties.Property(None, 'Manifest', 'displayName', 'Name', 'text', default='Home', help_text=dn_help_text),
+      Properties.Property(None, 'Manifest', 'shortName', 'Short Name', 'text', default='Home', help_text=sn_help_text),
+      Properties.Property(None, 'Manifest', 'backgroundColor', 'Background Color', 'color', default='#fff', help_text=bc_help_text),
+      Properties.Property(None, 'Manifest', 'themeColor', 'Theme Color', 'color', default='#fff', help_text=tc_help_text),
+      Properties.Property(None, 'Manifest', 'icon', 'Splash Screen Icon', 'image-upload', help_text=ic_help_text),
+      Properties.Property(None, 'Manifest', 'favicon', 'Favicon', 'image-upload', help_text=fc_help_text)
     ]

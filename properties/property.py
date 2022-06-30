@@ -13,6 +13,7 @@ from .numeric import NumericPropertyType
 from .page_link import PageLinkPropertyType
 from .code_editor import CodeEditorPropertyType
 from .html_editor import HtmlEditorPropertyType
+from .html_editor_view import HtmlEditorViewPropertyType
 from .theme_color import ThemeColorPropertyType
 from .admin_launcher import AdminLauncherPropertyType
 from .dynamic_component import DynamicComponentPropertyType
@@ -24,6 +25,8 @@ from .asset_select import AssetSelectPropertyType
 from .asset_field import AssetFieldPropertyType
 from .file_upload import FileUploadPropertyType
 from .email_list import EmailListPropertyType
+from .font_style import FontStylePropertyType
+from .font_style_selector import FontStyleSelectorPropertyType
 from lumavate_exceptions import ValidationException
 
 class Property:
@@ -74,13 +77,16 @@ class Property:
       'theme-color': ThemeColorPropertyType,
       'admin-launcher': AdminLauncherPropertyType,
       'html-editor': HtmlEditorPropertyType,
+      'html-editor-view': HtmlEditorViewPropertyType,
       'dynamic-component': DynamicComponentPropertyType,
       'dynamic-components': DynamicComponentsPropertyType,
       'dynamic-asset-select': DynamicAssetSelectPropertyType,
       'data-column-components': DataColumnComponentsPropertyType,
       'font': FontPropertyType,
       'file-upload': FileUploadPropertyType,
-      'email-list': EmailListPropertyType
+      'email-list': EmailListPropertyType,
+      'font-style': FontStylePropertyType,
+      'font-style-selector': FontStyleSelectorPropertyType
     }
 
     prop_type = types.get(type_name)
