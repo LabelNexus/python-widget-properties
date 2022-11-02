@@ -55,6 +55,9 @@ class BasePropertyPatcher:
 
     return self._create_patch_value('add', self.patch_request.is_component, self.patch_request.parent_name, new_component)
 
+  def copy(self):
+    raise ValidationException('Not implemented')
+
   def get_component_def(self, component_type):
     raise ValidationException('Not implemented')
 
