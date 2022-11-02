@@ -37,7 +37,7 @@ class PatchRequest:
 
     props = []
     component = None
-    if json.get('operation') in ['add','replace','edit']:
+    if json.get('operation') in ['add','replace','edit', 'copy']:
       component = copy.copy(json.get('componentDef', {}))
       if component is not None:
         component_props = component.get('properties',[])
