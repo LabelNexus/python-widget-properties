@@ -23,7 +23,9 @@ class PropertySigner:
         tag_modifiers = p.get('options',{}).get('tagModifiers',[])
         for t in tag_modifiers:
           self._sign_property(t)
-
+      elif p['type'] == 'dynamic-property-list':
+        self._sign_property(p.get('options',{}).get('propertyDef'))
+        self._sign_property(p)
       else:
         self._sign_property(p)
 
@@ -37,5 +39,5 @@ class PropertySigner:
   @classmethod
   def filter_signature_properties(cls,prop):
     excluded_keys = ['signature', 'hasComponentHelp', prop["name"], 'isNew']
-    return {k: v for k,v in prop.items() if k not in excluded_keys}
+    return {k: v for k,v in prop.items() if k not in excluded_keys and not k.startswith(prop["name"] + '_')}
 

@@ -26,3 +26,4 @@ class Properties:
   from .file_upload import FileUploadPropertyType
   from .font_style import FontStylePropertyType
   from .font_style_selector import FontStyleSelectorPropertyType
+  from .dynamic_property_list import DynamicPropertyListPropertyType
