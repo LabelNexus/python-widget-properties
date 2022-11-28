@@ -27,6 +27,7 @@ from .file_upload import FileUploadPropertyType
 from .email_list import EmailListPropertyType
 from .font_style import FontStylePropertyType
 from .font_style_selector import FontStyleSelectorPropertyType
+from .dynamic_property_list import DynamicPropertyListPropertyType
 from lumavate_exceptions import ValidationException
 
 class Property:
@@ -86,7 +87,8 @@ class Property:
       'file-upload': FileUploadPropertyType,
       'email-list': EmailListPropertyType,
       'font-style': FontStylePropertyType,
-      'font-style-selector': FontStyleSelectorPropertyType
+      'font-style-selector': FontStyleSelectorPropertyType,
+      'dynamic-property-list': DynamicPropertyListPropertyType
     }
 
     prop_type = types.get(type_name)
