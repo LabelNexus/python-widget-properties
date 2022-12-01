@@ -16,7 +16,7 @@ class DynamicPropertyListPropertyType(BasePropertyType):
     from .property import Property
 
     if self.property.options is None or self.property.options.get('propertyDef') is None:
-      raise ValidationException(f'Missing Options. Options with key "propertyDef" is required', api_field=self.property.name)
+      raise ValidationException(f'Missing options key, "propertyDef", is required', api_field=self.property.name)
 
     property_def_json = self.property.options.get('propertyDef')
     return Property.from_json(property_def_json)
