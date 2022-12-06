@@ -1,6 +1,7 @@
 from .constants import EXPERIENCE_CLOUD_FACTORY, add_read_handler
 from .properties import Properties
 from .components import Components
+from .enums import ColumnDataType
 
 from .patch_request import PatchRequest
 from .property_signer import PropertySigner
