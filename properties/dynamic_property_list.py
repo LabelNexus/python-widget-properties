@@ -3,6 +3,7 @@ from jinja2 import Environment, BaseLoader
 from flask import g
 from .base_property_type import BasePropertyType
 from lumavate_exceptions import ValidationException
+import copy
 
 class DynamicPropertyListPropertyType(BasePropertyType):
   @property
@@ -15,35 +16,36 @@ class DynamicPropertyListPropertyType(BasePropertyType):
     from .property import Property
 
     if self.property.options is None or self.property.options.get('propertyDef') is None:
-      raise ValidationException(f'Missing Options. Options with key "propertyDef" is required', api_field=self.property.name)
+      raise ValidationException(f'Missing options key, "propertyDef", is required', api_field=self.property.name)
 
-    property_def = self.property.options.get('propertyDef')
-    return Property.from_json(property_def.get('type'))
+    property_def_json = self.property.options.get('propertyDef')
+    return Property.from_json(property_def_json)
 
   def read(self, data):
     val = data.get(self.property.name, [])
     if val is None:
       val = []
-    properties = []
+    
+    parsed_values = []
 
-    # TODO: Get property type from property.get_property_type for  property_def
-    # TODO: read each item in array using that property type and its validations,
-    property_def = self.property_def
-    # return the list of parsed properties
+    base_property_def = self.property_def
+    for prop_value in val:
+      for key,value in prop_value.items():
+        if value is None or self._is_empty_asset_ref(value):
+          continue
 
-    """
-    for p in val:
-      comp_values = {}
+        property_def_instance = self._get_property_instance(base_property_def, key, value)
+        parsed_values.append({key: property_def_instance.read(prop_value)});
 
-      component_type = c.get('componentType', '__NOTYPE__')
-      component_data = c.get('componentData', {})
-      component_id = c.get('id', None)
-      component_json = next((x for x in self.property.options.get('components', []) if x['type'] == component_type), None)
-      if component_json is None:
-        raise ValidationException('Invalid Dynamic Component Value: ' + component_type)
+    return parsed_values
 
-      components.append(DynamicComponentPropertyType.get_component_data(component_id, component_type, component_data, component_json))
+  # base_property_def needs to be converted to a unique property definition
+  # since each property value will have a unique name and value
+  def _get_property_instance(self, base_property_def, key, value):
+    property_def_instance = copy.deepcopy(base_property_def);
+    property_def_instance.name = key;
+    return property_def_instance
 
-    self.value = components
-    """
-    return properties
+
+  def _is_empty_asset_ref(self,value):
+    return not value or (type(value) is dict and 'assetRef' in value and not value['assetRef']['assetId'])
