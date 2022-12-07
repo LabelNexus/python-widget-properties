@@ -20,6 +20,7 @@ from .dynamic_component import DynamicComponentPropertyType
 from .dynamic_components import DynamicComponentsPropertyType
 from .dynamic_asset_select import DynamicAssetSelectPropertyType
 from .data_column_components import DataColumnComponentsPropertyType
+from .data_column_row_input import DataColumnRowInputPropertyType
 from .font import FontPropertyType
 from .asset_select import AssetSelectPropertyType
 from .asset_field import AssetFieldPropertyType
@@ -83,6 +84,7 @@ class Property:
       'dynamic-components': DynamicComponentsPropertyType,
       'dynamic-asset-select': DynamicAssetSelectPropertyType,
       'data-column-components': DataColumnComponentsPropertyType,
+      'data-column-row-input': DataColumnRowInputPropertyType,
       'font': FontPropertyType,
       'file-upload': FileUploadPropertyType,
       'email-list': EmailListPropertyType,
