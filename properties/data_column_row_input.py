@@ -53,7 +53,10 @@ class DataColumnRowInputPropertyType(BasePropertyType):
     if column_type==enums.ColumnDataType.DROPDOWN:
       return DataColumnRowInputPropertyType.parse_dropdown_options(column_def)
       
-    return column_def.get('columnType',{}).get('options',{})
+    options = column_def.get('columnType',{}).get('options',{})
+    if options == '':
+      options = {}
+    return options
 
   @staticmethod
   def parse_dropdown_options(column_def):
