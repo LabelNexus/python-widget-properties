@@ -24,7 +24,11 @@ class PropertySigner:
         for t in tag_modifiers:
           self._sign_property(t)
       elif p['type'] == 'dynamic-property-list':
-        self._sign_property(p.get('options',{}).get('propertyDef'))
+        self._sign_property(p.get('options',{}).get('propertyDef',[]))
+        self._sign_property(p)
+      elif p['type'] == 'data-column-row-input':
+        for prop in p.get('options',{}).get('properties',[]):
+          self._sign_property(prop)
         self._sign_property(p)
       else:
         self._sign_property(p)

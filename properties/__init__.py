@@ -19,6 +19,7 @@ class Properties:
   from .dynamic_components import DynamicComponentsPropertyType
   from .font import FontPropertyType
   from .data_column_components import DataColumnComponentsPropertyType
+  from .data_column_row_input import DataColumnRowInputPropertyType
   from .dropdown_options import DropdownOptionsPropertyType
   from .asset_select import AssetSelectPropertyType
   from .asset_field import AssetFieldPropertyType
