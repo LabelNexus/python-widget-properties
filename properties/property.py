@@ -14,6 +14,7 @@ from .page_link import PageLinkPropertyType
 from .code_editor import CodeEditorPropertyType
 from .html_editor import HtmlEditorPropertyType
 from .html_editor_view import HtmlEditorViewPropertyType
+from .asset_data_select import AssetDataSelectPropertyType
 from .theme_color import ThemeColorPropertyType
 from .admin_launcher import AdminLauncherPropertyType
 from .dynamic_component import DynamicComponentPropertyType
@@ -83,6 +84,7 @@ class Property:
       'dynamic-component': DynamicComponentPropertyType,
       'dynamic-components': DynamicComponentsPropertyType,
       'dynamic-asset-select': DynamicAssetSelectPropertyType,
+      'asset-data-select': AssetDataSelectPropertyType,
       'data-column-components': DataColumnComponentsPropertyType,
       'data-column-row-input': DataColumnRowInputPropertyType,
       'font': FontPropertyType,
