@@ -68,11 +68,11 @@ class DataColumnRowInputPropertyType(BasePropertyType):
     for option in column_options.split(','):
       split_option = option.split('|')
       if len(split_option)==2:
-        options[split_option[1].strip()] = split_option[0].strip()
+        options[split_option[0].strip()] = split_option[1].strip()
       else:
         options[split_option[0].strip()] = split_option[0].strip()
 
-      return options
+    return options
 
   @staticmethod
   def column_property_mappings():
