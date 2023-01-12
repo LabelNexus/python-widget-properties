@@ -28,3 +28,5 @@ class Properties:
   from .font_style import FontStylePropertyType
   from .font_style_selector import FontStyleSelectorPropertyType
   from .dynamic_property_list import DynamicPropertyListPropertyType
+  from .simple_html_editor import SimpleHtmlEditorPropertyType
+  from .simple_html_editor_view import SimpleHtmlEditorViewPropertyType

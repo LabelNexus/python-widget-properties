@@ -30,6 +30,8 @@ from .email_list import EmailListPropertyType
 from .font_style import FontStylePropertyType
 from .font_style_selector import FontStyleSelectorPropertyType
 from .dynamic_property_list import DynamicPropertyListPropertyType
+from .simple_html_editor import SimpleHtmlEditorPropertyType
+from .simple_html_editor_view import SimpleHtmlEditorViewPropertyType
 from lumavate_exceptions import ValidationException
 
 class Property:
@@ -81,6 +83,8 @@ class Property:
       'admin-launcher': AdminLauncherPropertyType,
       'html-editor': HtmlEditorPropertyType,
       'html-editor-view': HtmlEditorViewPropertyType,
+      'simple-html-editor': SimpleHtmlEditorPropertyType,
+      'simple-html-editor-view': SimpleHtmlEditorViewPropertyType,
       'dynamic-component': DynamicComponentPropertyType,
       'dynamic-components': DynamicComponentsPropertyType,
       'dynamic-asset-select': DynamicAssetSelectPropertyType,

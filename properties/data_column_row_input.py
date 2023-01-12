@@ -89,6 +89,7 @@ class DataColumnRowInputPropertyType(BasePropertyType):
   @staticmethod
   def parse_document_options(column_def):
     return {
+      'allowPageSelect': False,
       'initialSource': 'asset'
     }
 
@@ -99,9 +100,9 @@ class DataColumnRowInputPropertyType(BasePropertyType):
       enums.ColumnDataType.DATETIME.value: 'datetime',
       enums.ColumnDataType.DROPDOWN.value: 'dropdown',
       enums.ColumnDataType.NUMERIC.value: 'numeric',
-      enums.ColumnDataType.TEXT.value: 'translated-text',
+      enums.ColumnDataType.TEXT.value: 'text',
       enums.ColumnDataType.FILE.value: 'file-upload',
-      enums.ColumnDataType.RICHTEXT.value: 'html-editor',
+      enums.ColumnDataType.RICHTEXT.value: 'simple-html-editor',
       enums.ColumnDataType.DOCUMENT.value: 'page-link',
       enums.ColumnDataType.IMAGE.value: 'image-upload',
       enums.ColumnDataType.VIDEO.value: 'video'
