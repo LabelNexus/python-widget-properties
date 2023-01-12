@@ -53,6 +53,12 @@ class DataColumnRowInputPropertyType(BasePropertyType):
     if column_type==enums.ColumnDataType.DROPDOWN:
       return DataColumnRowInputPropertyType.parse_dropdown_options(column_def)
       
+    if column_type==enums.ColumnDataType.IMAGE:
+      return DataColumnRowInputPropertyType.parse_image_options(column_def)
+
+    if column_type==enums.ColumnDataType.DOCUMENT:
+      return DataColumnRowInputPropertyType.parse_document_options(column_def)
+
     options = column_def.get('columnType',{}).get('options',{})
     if options == '':
       options = {}
@@ -73,6 +79,19 @@ class DataColumnRowInputPropertyType(BasePropertyType):
         options[split_option[0].strip()] = split_option[0].strip()
 
     return options
+  
+  @staticmethod
+  def parse_image_options(column_def):
+    return {
+      'hideDefaultSource': True
+    }
+
+  @staticmethod
+  def parse_document_options(column_def):
+    return {
+      'allowPageSelect': False,
+      'initialSource': 'asset'
+    }
 
   @staticmethod
   def column_property_mappings():
@@ -81,9 +100,9 @@ class DataColumnRowInputPropertyType(BasePropertyType):
       enums.ColumnDataType.DATETIME.value: 'datetime',
       enums.ColumnDataType.DROPDOWN.value: 'dropdown',
       enums.ColumnDataType.NUMERIC.value: 'numeric',
-      enums.ColumnDataType.TEXT.value: 'translated-text',
+      enums.ColumnDataType.TEXT.value: 'text',
       enums.ColumnDataType.FILE.value: 'file-upload',
-      enums.ColumnDataType.RICHTEXT.value: 'html-editor',
+      enums.ColumnDataType.RICHTEXT.value: 'simple-html-editor',
       enums.ColumnDataType.DOCUMENT.value: 'page-link',
       enums.ColumnDataType.IMAGE.value: 'image-upload',
       enums.ColumnDataType.VIDEO.value: 'video'
