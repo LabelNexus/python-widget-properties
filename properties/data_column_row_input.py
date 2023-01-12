@@ -56,6 +56,9 @@ class DataColumnRowInputPropertyType(BasePropertyType):
     if column_type==enums.ColumnDataType.IMAGE:
       return DataColumnRowInputPropertyType.parse_image_options(column_def)
 
+    if column_type==enums.ColumnDataType.DOCUMENT:
+      return DataColumnRowInputPropertyType.parse_document_options(column_def)
+
     options = column_def.get('columnType',{}).get('options',{})
     if options == '':
       options = {}
@@ -83,7 +86,11 @@ class DataColumnRowInputPropertyType(BasePropertyType):
       'hideDefaultSource': True
     }
 
-
+  @staticmethod
+  def parse_document_options(column_def):
+    return {
+      'initialSource': 'asset'
+    }
 
   @staticmethod
   def column_property_mappings():
