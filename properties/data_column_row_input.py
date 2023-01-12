@@ -53,6 +53,9 @@ class DataColumnRowInputPropertyType(BasePropertyType):
     if column_type==enums.ColumnDataType.DROPDOWN:
       return DataColumnRowInputPropertyType.parse_dropdown_options(column_def)
       
+    if column_type==enums.ColumnDataType.IMAGE:
+      return DataColumnRowInputPropertyType.parse_image_options(column_def)
+
     options = column_def.get('columnType',{}).get('options',{})
     if options == '':
       options = {}
@@ -73,6 +76,14 @@ class DataColumnRowInputPropertyType(BasePropertyType):
         options[split_option[0].strip()] = split_option[0].strip()
 
     return options
+  
+  @staticmethod
+  def parse_image_options(column_def):
+    return {
+      'hideDefaultSource': True
+    }
+
+
 
   @staticmethod
   def column_property_mappings():
