@@ -14,6 +14,10 @@ class NumericPropertyType(BasePropertyType):
   def max(self):
     return self.property.options.get('max')
 
+  @property
+  def decimal_places(self):
+    return self.property.options.get('decimalPlaces',0)
+
   def too_low(self, val):
     return self.min is not None and val < self.min
 
@@ -27,7 +31,10 @@ class NumericPropertyType(BasePropertyType):
       val = self.property.default
 
     try:
-     val = int(val)
+      if self.decimal_places == 0:
+        val = int(val)
+      else:
+        val = float(format(val, f'.{self.decimal_places}f'))
 
     except Exception as e:
       raise ValidationException('Invalid Number: ' + str(val))
