@@ -91,6 +91,7 @@ class DataColumnRowInputPropertyType(BasePropertyType):
 
   @staticmethod
   def parse_document_options(column_def):
+    # pages dont exist outside of apps so hide page select.
     return {
       'allowPageSelect': False,
       'initialSource': 'asset'
