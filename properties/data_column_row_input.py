@@ -50,14 +50,17 @@ class DataColumnRowInputPropertyType(BasePropertyType):
   @staticmethod
   def get_property_options(column_def):
     column_type = column_def.get('columnType',{}).get('value')
+    if column_type==enums.ColumnDataType.DOCUMENT:
+      return DataColumnRowInputPropertyType.parse_document_options(column_def)
+
     if column_type==enums.ColumnDataType.DROPDOWN:
       return DataColumnRowInputPropertyType.parse_dropdown_options(column_def)
       
     if column_type==enums.ColumnDataType.IMAGE:
       return DataColumnRowInputPropertyType.parse_image_options(column_def)
 
-    if column_type==enums.ColumnDataType.DOCUMENT:
-      return DataColumnRowInputPropertyType.parse_document_options(column_def)
+    if column_type==enums.ColumnDataType.RICHTEXT:
+      return DataColumnRowInputPropertyType.parse_richtext_options(column_def)
 
     options = column_def.get('columnType',{}).get('options',{})
     if options == '':
@@ -88,9 +91,17 @@ class DataColumnRowInputPropertyType(BasePropertyType):
 
   @staticmethod
   def parse_document_options(column_def):
+    # pages dont exist outside of apps so hide page select.
     return {
       'allowPageSelect': False,
       'initialSource': 'asset'
+    }
+
+  @staticmethod
+  def parse_richtext_options(column_def):
+    return {
+      'useStandardView': True,
+      'initialSource': 'default'
     }
 
   @staticmethod
@@ -129,7 +140,9 @@ class DataColumnRowInputPropertyType(BasePropertyType):
       return property_options.get('default', {})
     if property_type == 'toggle':
       return property_options.get('default',False)
-    elif property_type == 'translated-text':
+    elif property_type == 'text':
+      return property_options.get('default', '')
+    elif property_type == 'simple-html-editor':
       return property_options.get('default', '')
     elif property_type == 'video':
       return property_options.get('default', {})
