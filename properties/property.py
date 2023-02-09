@@ -33,6 +33,7 @@ from .dynamic_property_list import DynamicPropertyListPropertyType
 from .simple_html_editor import SimpleHtmlEditorPropertyType
 from .simple_html_editor_view import SimpleHtmlEditorViewPropertyType
 from lumavate_exceptions import ValidationException
+from .data_source import DataSourcePropertyType
 
 class Property:
   def __init__(self, classification, section, name, label, property_type_name, options={}, default=None, help_text=None):
@@ -65,6 +66,7 @@ class Property:
     types = {
       'asset-select': AssetSelectPropertyType,
       'asset-field': AssetFieldPropertyType,
+      'data-source': DataSourcePropertyType,
       'text' : TextPropertyType,
       'color': ColorPropertyType,
       'image-upload': ImagePropertyType,
