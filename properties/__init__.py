@@ -30,3 +30,4 @@ class Properties:
   from .dynamic_property_list import DynamicPropertyListPropertyType
   from .simple_html_editor import SimpleHtmlEditorPropertyType
   from .simple_html_editor_view import SimpleHtmlEditorViewPropertyType
+  from .data_source import DataSourcePropertyType
