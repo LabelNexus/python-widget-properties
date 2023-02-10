@@ -29,6 +29,9 @@ class DynamicPropertyListPropertyType(BasePropertyType):
     parsed_values = []
 
     base_property_def = self.property_def
+    if isinstance(val, dict) and 'dataColumnRef' in val:
+      return val
+
     for prop_value in val:
       for key,value in prop_value.items():
         if value is None or self._is_empty_asset_ref(value):
@@ -42,8 +45,8 @@ class DynamicPropertyListPropertyType(BasePropertyType):
   # base_property_def needs to be converted to a unique property definition
   # since each property value will have a unique name and value
   def _get_property_instance(self, base_property_def, key, value):
-    property_def_instance = copy.deepcopy(base_property_def);
-    property_def_instance.name = key;
+    property_def_instance = copy.deepcopy(base_property_def)
+    property_def_instance.name = key
     return property_def_instance
 
 
