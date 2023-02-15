@@ -22,8 +22,8 @@ class DynamicPropertyListPropertyType(BasePropertyType):
     return Property.from_json(property_def_json)
 
   @property
-  def save_incomplete(self):
-    return self.property.options.get('saveIncomplete',True)
+  def save_incomplete_data(self):
+    return self.property.options.get('saveIncompleteData',True)
 
   def read(self, data):
     val = data.get(self.property.name, [])
@@ -39,7 +39,7 @@ class DynamicPropertyListPropertyType(BasePropertyType):
     for prop_value in val:
 
       for key,value in prop_value.items():
-        if not self.save_incomplete and (value is None or self._is_empty_asset_ref(value)):
+        if not self.save_incomplete_data and (value is None or self._is_empty_asset_ref(value)):
           continue
 
         property_def_instance = self._get_property_instance(base_property_def, key, value)
