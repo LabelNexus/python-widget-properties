@@ -32,6 +32,7 @@ from .font_style_selector import FontStyleSelectorPropertyType
 from .dynamic_property_list import DynamicPropertyListPropertyType
 from .simple_html_editor import SimpleHtmlEditorPropertyType
 from .simple_html_editor_view import SimpleHtmlEditorViewPropertyType
+from .connection_field import ConnnectionFieldPropertyType
 from lumavate_exceptions import ValidationException
 from .data_source import DataSourcePropertyType
 
@@ -98,7 +99,8 @@ class Property:
       'email-list': EmailListPropertyType,
       'font-style': FontStylePropertyType,
       'font-style-selector': FontStyleSelectorPropertyType,
-      'dynamic-property-list': DynamicPropertyListPropertyType
+      'dynamic-property-list': DynamicPropertyListPropertyType,
+      'connection-field': ConnnectionFieldPropertyType
     }
 
     prop_type = types.get(type_name)
