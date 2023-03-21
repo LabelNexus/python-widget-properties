@@ -11,6 +11,7 @@ class Properties:
   from .toggle import TogglePropertyType
   from .dropdown import DropdownPropertyType
   from .multiselect import MultiselectPropertyType
+  from .multiselect_chip import MultiselectChipPropertyType
   from .numeric import NumericPropertyType
   from .page_link import PageLinkPropertyType
   from .code_editor import CodeEditorPropertyType

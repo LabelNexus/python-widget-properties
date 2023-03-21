@@ -55,6 +55,9 @@ class DataColumnRowInputPropertyType(BasePropertyType):
 
     if column_type==enums.ColumnDataType.DROPDOWN:
       return DataColumnRowInputPropertyType.parse_dropdown_options(column_def)
+
+    if column_type==enums.ColumnDataType.MULTISELECT:
+      return DataColumnRowInputPropertyType.parse_dropdown_options(column_def)
       
     if column_type==enums.ColumnDataType.IMAGE:
       return DataColumnRowInputPropertyType.parse_image_options(column_def)
@@ -110,6 +113,7 @@ class DataColumnRowInputPropertyType(BasePropertyType):
       enums.ColumnDataType.BOOLEAN.value:  'toggle',
       enums.ColumnDataType.DATETIME.value: 'datetime',
       enums.ColumnDataType.DROPDOWN.value: 'dropdown',
+      enums.ColumnDataType.MULTISELECT.value: 'multiselect-chip',
       enums.ColumnDataType.NUMERIC.value: 'numeric',
       enums.ColumnDataType.TEXT.value: 'text',
       enums.ColumnDataType.FILE.value: 'file-upload',
@@ -124,7 +128,7 @@ class DataColumnRowInputPropertyType(BasePropertyType):
     if property_type == 'datetime':
       # TODO we dont hav a datetime type
       return ''
-    elif property_type == 'dropdown':
+    elif property_type == 'dropdown' or property_type == 'mutliselect-chip':
       options = list(property_options.keys())
       if len(options)>0:
         return options[0]

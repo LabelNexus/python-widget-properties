@@ -9,6 +9,7 @@ from .translated_text import TranslatedTextProperty
 from .dropdown import DropdownPropertyType
 from .dropdown_options import DropdownOptionsPropertyType
 from .multiselect import MultiselectPropertyType
+from .multiselect_chip import MultiselectChipPropertyType
 from .numeric import NumericPropertyType
 from .page_link import PageLinkPropertyType
 from .code_editor import CodeEditorPropertyType
@@ -79,6 +80,7 @@ class Property:
       'dropdown': DropdownPropertyType,
       'dropdown-options': DropdownOptionsPropertyType,
       'multiselect': MultiselectPropertyType,
+      'multiselect-chip': MultiselectChipPropertyType,
       'numeric': NumericPropertyType,
       'page-link': PageLinkPropertyType,
       'code-editor': CodeEditorPropertyType,
