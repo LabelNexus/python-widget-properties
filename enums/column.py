@@ -4,6 +4,7 @@ class ColumnDataType(str, Enum):
   BOOLEAN = 'boolean'
   DATETIME = 'datetime'
   DROPDOWN = 'dropdown'
+  MULTISELECT = 'multiselect'
   NUMERIC = 'numeric'
   TEXT = 'text'
   FILE = 'file'
