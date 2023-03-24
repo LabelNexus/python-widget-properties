@@ -120,7 +120,8 @@ class DataColumnRowInputPropertyType(BasePropertyType):
       enums.ColumnDataType.RICHTEXT.value: 'simple-html-editor',
       enums.ColumnDataType.DOCUMENT.value: 'page-link',
       enums.ColumnDataType.IMAGE.value: 'image-upload',
-      enums.ColumnDataType.VIDEO.value: 'video'
+      enums.ColumnDataType.VIDEO.value: 'video',
+      enums.ColumnDataType.ASSETDATA.value: 'asset-data'
     }
 
   @staticmethod

@@ -12,3 +12,4 @@ class ColumnDataType(str, Enum):
   DOCUMENT = 'document'
   IMAGE = 'image'
   VIDEO = 'video'
+  ASSETDATA = 'asset-data'
