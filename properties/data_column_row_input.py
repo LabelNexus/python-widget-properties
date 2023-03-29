@@ -155,4 +155,15 @@ class DataColumnRowInputPropertyType(BasePropertyType):
     return property_options.get('default', None)
 
   def read(self, data):
-    return super().read(data)
+    from .property import Property
+
+    parsed_data = {}
+    column_properties = self.property.options['properties']
+
+    for column_name, column_value in data[self.property.name].items():
+      column_property = next((column for column in column_properties if column_name == column['name']), None)
+      if column_property is not None:
+        property_def = Property.from_json(column_property)
+        parsed_data[column_name] = property_def.read(data[self.property.name])
+
+    return parsed_data
