@@ -66,7 +66,7 @@ class DataColumnRowInputPropertyType(BasePropertyType):
       return DataColumnRowInputPropertyType.parse_richtext_options(column_def)
 
     options = column_def.get('columnType',{}).get('options',{})
-    if options == '':
+    if options is None or options == '':
       options = {}
     return options
 
