@@ -65,6 +65,9 @@ class DataColumnRowInputPropertyType(BasePropertyType):
     if column_type==enums.ColumnDataType.RICHTEXT:
       return DataColumnRowInputPropertyType.parse_richtext_options(column_def)
 
+    if column_type==enums.ColumnDataType.FILE:
+      return DataColumnRowInputPropertyType.parse_file_options(column_def)
+
     options = column_def.get('columnType',{}).get('options',{})
     if options is None or options == '':
       options = {}
@@ -107,6 +110,12 @@ class DataColumnRowInputPropertyType(BasePropertyType):
       'initialSource': 'default'
     }
 
+  def parse_file_options(column_def):
+    return {
+      'maxSizeInMb': 5,
+      'sendToS3': False
+    }
+
   @staticmethod
   def column_property_mappings():
     return {
@@ -136,7 +145,7 @@ class DataColumnRowInputPropertyType(BasePropertyType):
 
       return ''
     elif property_type == 'file-upload':
-      return property_options.get('default', {})
+      return property_options.get('default', None)
     elif property_type == 'image-upload':
       return property_options.get('default', {})
     elif property_type == 'numeric':
