@@ -145,7 +145,7 @@ class DataColumnRowInputPropertyType(BasePropertyType):
 
       return ''
     elif property_type == 'file-upload':
-      return property_options.get('default', {})
+      return property_options.get('default', None
     elif property_type == 'image-upload':
       return property_options.get('default', {})
     elif property_type == 'numeric':
