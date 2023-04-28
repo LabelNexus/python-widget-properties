@@ -65,6 +65,9 @@ class DataColumnRowInputPropertyType(BasePropertyType):
     if column_type==enums.ColumnDataType.RICHTEXT:
       return DataColumnRowInputPropertyType.parse_richtext_options(column_def)
 
+    if column_type==enums.ColumnDataType.FILE:
+      return DataColumnRowInputPropertyType.parse_file_options(column_def)
+
     options = column_def.get('columnType',{}).get('options',{})
     if options is None or options == '':
       options = {}
@@ -105,6 +108,12 @@ class DataColumnRowInputPropertyType(BasePropertyType):
     return {
       'useStandardView': True,
       'initialSource': 'default'
+    }
+
+  def parse_file_options(column_def):
+    return {
+      'maxSizeInMb': 5,
+      'sendToS3': False
     }
 
   @staticmethod
