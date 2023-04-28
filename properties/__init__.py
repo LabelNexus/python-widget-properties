@@ -33,3 +33,4 @@ class Properties:
   from .simple_html_editor_view import SimpleHtmlEditorViewPropertyType
   from .data_source import DataSourcePropertyType
   from .connection_field import ConnnectionFieldPropertyType
+  from .datetime import DateTimePropertyType
