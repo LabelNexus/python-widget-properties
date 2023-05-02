@@ -36,6 +36,7 @@ from .simple_html_editor_view import SimpleHtmlEditorViewPropertyType
 from .connection_field import ConnnectionFieldPropertyType
 from lumavate_exceptions import ValidationException
 from .data_source import DataSourcePropertyType
+from .datetime import DateTimePropertyType
 
 class Property:
   def __init__(self, classification, section, name, label, property_type_name, options={}, default=None, help_text=None):
@@ -102,7 +103,8 @@ class Property:
       'font-style': FontStylePropertyType,
       'font-style-selector': FontStyleSelectorPropertyType,
       'dynamic-property-list': DynamicPropertyListPropertyType,
-      'connection-field': ConnnectionFieldPropertyType
+      'connection-field': ConnnectionFieldPropertyType,
+      'datetime': DateTimePropertyType
     }
 
     prop_type = types.get(type_name)
