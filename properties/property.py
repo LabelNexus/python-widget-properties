@@ -37,6 +37,7 @@ from .connection_field import ConnnectionFieldPropertyType
 from lumavate_exceptions import ValidationException
 from .data_source import DataSourcePropertyType
 from .datetime import DateTimePropertyType
+from .video import VideoPropertyType
 
 class Property:
   def __init__(self, classification, section, name, label, property_type_name, options={}, default=None, help_text=None):
@@ -104,7 +105,8 @@ class Property:
       'font-style-selector': FontStyleSelectorPropertyType,
       'dynamic-property-list': DynamicPropertyListPropertyType,
       'connection-field': ConnnectionFieldPropertyType,
-      'datetime': DateTimePropertyType
+      'datetime': DateTimePropertyType,
+      'video': VideoPropertyType
     }
 
     prop_type = types.get(type_name)
