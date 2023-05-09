@@ -19,6 +19,7 @@ class DataColumnRowInputPropertyType(BasePropertyType):
 
       property_type = DataColumnRowInputPropertyType.get_column_property_mapping(column_def)
       options = DataColumnRowInputPropertyType.get_property_options(column_def)
+      additional_options = DataColumnRowInputPropertyType.get_property_additional_options(column_def)
       default = DataColumnRowInputPropertyType.get_property_default(property_type, options)
       properties.append(Property( 
         classification=None,
@@ -28,7 +29,8 @@ class DataColumnRowInputPropertyType(BasePropertyType):
         property_type_name=property_type,
         options=options,
         default=default,
-        help_text='').to_json())
+        help_text='',
+        additional_options=additional_options).to_json())
 
     return Property(
       classification=None,
@@ -71,6 +73,18 @@ class DataColumnRowInputPropertyType(BasePropertyType):
     options = column_def.get('columnType',{}).get('options',{})
     if options is None or options == '':
       options = {}
+    return options
+
+  @staticmethod
+  def get_property_additional_options(column_def):
+    column_type = column_def.get('columnType',{}).get('value')
+    options = column_def.get('columnType',{}).get('additionalOptions',{})
+    if options is None or options == '':
+      options = {}
+
+    if column_type==enums.ColumnDataType.DROPDOWN:
+      options['allowNone'] = True
+
     return options
 
   @staticmethod
@@ -138,7 +152,9 @@ class DataColumnRowInputPropertyType(BasePropertyType):
     if property_type == 'datetime':
       # TODO we dont hav a datetime type
       return ''
-    elif property_type == 'dropdown' or property_type == 'mutliselect-chip':
+    elif property_type == 'dropdown':
+      return ''
+    elif property_type == 'mutliselect-chip':
       options = list(property_options.keys())
       if len(options)>0:
         return options[0]
