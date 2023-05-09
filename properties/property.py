@@ -40,7 +40,7 @@ from .datetime import DateTimePropertyType
 from .video import VideoPropertyType
 
 class Property:
-  def __init__(self, classification, section, name, label, property_type_name, options={}, default=None, help_text=None):
+  def __init__(self, classification, section, name, label, property_type_name, options={}, default=None, help_text=None, additional_options={}):
     self.property_type = self.get_property_type(property_type_name)
     self.classification = classification
     self.section = section
@@ -50,6 +50,7 @@ class Property:
     self.property_type.property = self
     self.options = options
     self.help_text = help_text
+    self.additional_options = additional_options
 
   @staticmethod
   def from_json(json):
@@ -125,7 +126,8 @@ class Property:
       'type': self.property_type.type_name,
       'options': self.options,
       'default': self.default,
-      'helpText': self.help_text
+      'helpText': self.help_text,
+      'additionalOptions': self.additional_options
     }
 
   def read(self, data):

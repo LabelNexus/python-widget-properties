@@ -27,7 +27,7 @@ class DropdownPropertyType(BasePropertyType):
     if val is None:
       val = self.property.default
 
-    if str(val) not in check_hash:
+    if val and str(val) not in check_hash:
       raise ValidationException('Invalid Value: ' + str(val) + ' - must be in set ' + ','.join(list(self.property.options.keys())))
 
     return val
