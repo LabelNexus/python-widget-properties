@@ -12,6 +12,7 @@ class DynamicComponentPropertyType(BasePropertyType):
     val = data.get(self.property.name, {})
 
     component_type = val.get('componentType', '__NOTYPE__')
+    is_child_component = self.property.options.get("isChild", False)
 
     # The widget instance could've been created without valid component sets and set to None values.
     # Determine if that is the case and if we should re-evaluate the property
@@ -22,11 +23,14 @@ class DynamicComponentPropertyType(BasePropertyType):
     component_id = val.get('id', None)
     component_data = val.get('componentData', {})
     component_json = next((x for x in self.property.options.get('components', []) if x['type'] == component_type), None)
-    return DynamicComponentPropertyType.get_component_data(component_id, component_type, component_data, component_json)
+    return DynamicComponentPropertyType.get_component_data(component_id, component_type, component_data, component_json, is_child_component)
 
   @staticmethod
-  def get_component_data(component_id, component_type, component_data, component_json):
-    component_def = g.all_components.get(component_type, None)
+  def get_component_data(component_id, component_type, component_data, component_json, is_child_component=False):
+    component_def = None
+    if not is_child_component:
+      component_def = g.all_components.get(component_type, None)
+
     if component_def is None:
       return {
         'componentType': 'None',
@@ -56,13 +60,13 @@ class DynamicComponentPropertyType(BasePropertyType):
     if component.display_name is not None and '{{' in component.display_name:
       display_name_template = component.display_name
 
-    if component.component_type in g.all_components:
-      component_meta = g.all_components.get(component.component_type, {})
-      # Flag the component as being used so widget proxy can update component set namespace version table
-      component_meta.update({'isUsed': True})
+    if not is_child_component and component.component_type in g.all_components:
+        component_meta = g.all_components.get(component.component_type, {})
+        # Flag the component as being used so widget proxy can update component set namespace version table
+        component_meta.update({'isUsed': True})
 
-      result['componentTemplate'] = component_def.get('template', '')
-      display_name_template = component_def.get('displayNameTemplate')
+        result['componentTemplate'] = component_def.get('template', '')
+        display_name_template = component_def.get('displayNameTemplate')
 
     if display_name_template:
       rtemplate = Environment(loader=BaseLoader).from_string(display_name_template)

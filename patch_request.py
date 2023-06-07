@@ -15,7 +15,9 @@ class PatchRequest:
       component_id,
       component_type,
       component = None,
-      old_component = None
+      old_component = None,
+      root_name = None,
+      parent_component_id = None
       ):
     self.namespace = namespace
     self.instanceId = instance_id
@@ -29,6 +31,9 @@ class PatchRequest:
     self.component_type = component_type
     self.component = component
     self.old_component_set = old_component
+    self.root_name = root_name
+    self.is_child_component = root_name is not None
+    self.parent_component_id = parent_component_id
 
   @staticmethod
   def from_json(json):
@@ -37,7 +42,7 @@ class PatchRequest:
 
     props = []
     component = None
-    if json.get('operation') in ['add','replace','edit', 'copy']:
+    if json.get('operation') in ['add','replace','edit', 'copy', 'addChild', 'editChild']:
       component = copy.copy(json.get('componentDef', {}))
       if component is not None:
         component_props = component.get('properties',[])
@@ -59,6 +64,8 @@ class PatchRequest:
         json.get('componentId'), \
         json.get('componentType'), \
         component, \
-        json.get('oldComponentSet')
+        json.get('oldComponentSet'),
+        json.get('rootName'),
+        json.get('parentComponentId')
         )
 

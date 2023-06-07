@@ -38,12 +38,13 @@ class DynamicPropertyListPropertyType(BasePropertyType):
 
     for prop_value in val:
 
-      for key,value in prop_value.items():
-        if not self.save_incomplete_data and (value is None or self._is_empty_asset_ref(value)):
-          continue
+      if isinstance(prop_value, dict):
+        for key,value in prop_value.items():
+          if not self.save_incomplete_data and (value is None or self._is_empty_asset_ref(value)):
+            continue
 
-        property_def_instance = self._get_property_instance(base_property_def, key, value)
-        parsed_values.append({key: property_def_instance.read(prop_value)});
+          property_def_instance = self._get_property_instance(base_property_def, key, value)
+          parsed_values.append({key: property_def_instance.read(prop_value)});
 
     return parsed_values
 
