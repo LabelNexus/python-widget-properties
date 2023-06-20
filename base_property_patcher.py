@@ -27,7 +27,7 @@ class BasePropertyPatcher:
 
   @classmethod
   def fix_display_name(cls, display_name_value, component_label):
-    if display_name_value.lower() == 'id not set':
+    if display_name_value.lower() == 'id not set' or display_name_value.lower() == 'name not set':
       return component_label
 
     return display_name_value
