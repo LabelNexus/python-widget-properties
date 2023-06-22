@@ -65,7 +65,8 @@ class Property:
       json.get('type'), \
       options=json.get('options'), \
       default=json.get('default'), \
-      help_text=json.get('helpText'))
+      help_text=json.get('helpText'),
+      additional_options=json.get('additionalOptions'))
 
   def get_property_type(self, type_name):
     types = {
