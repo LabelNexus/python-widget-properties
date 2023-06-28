@@ -60,13 +60,13 @@ class DynamicComponentPropertyType(BasePropertyType):
     if component.display_name is not None and '{{' in component.display_name:
       display_name_template = component.display_name
 
-    if not is_child_component and component.component_type in g.all_components:
-        component_meta = g.all_components.get(component.component_type, {})
-        # Flag the component as being used so widget proxy can update component set namespace version table
-        component_meta.update({'isUsed': True})
+    if component.component_type in g.all_components:
+      component_meta = g.all_components.get(component.component_type, {})
+      # Flag the component as being used so widget proxy can update component set namespace version table
+      component_meta.update({'isUsed': True})
 
-        result['componentTemplate'] = component_def.get('template', '')
-        display_name_template = component_def.get('displayNameTemplate')
+      result['componentTemplate'] = component_def.get('template', '')
+      display_name_template = component_def.get('displayNameTemplate')
 
     if display_name_template:
       rtemplate = Environment(loader=BaseLoader).from_string(display_name_template)
