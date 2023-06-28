@@ -2,6 +2,7 @@
 from jinja2 import Environment, BaseLoader
 from flask import g
 from .base_property_type import BasePropertyType
+from .dynamic_component import DynamicComponentPropertyType
 from lumavate_exceptions import ValidationException
 import copy
 
@@ -37,13 +38,28 @@ class DynamicPropertyListPropertyType(BasePropertyType):
       return val
 
     for prop_value in val:
+      if base_property_def.property_type.type_name == 'dynamic-component':
+        for key,value in prop_value.items():
+          if not value:
+            parsed_values.append({key: value})
+            continue
 
-      for key,value in prop_value.items():
-        if not self.save_incomplete_data and (value is None or self._is_empty_asset_ref(value)):
-          continue
+          component_type = value.get('componentType', '__NOTYPE__')
+          component_data = value.get('componentData', {})
+          component_id = value.get('id', None)
+          component_json = g.all_components.get(component_type, None)
+          if component_json is None:
+            raise ValidationException('Invalid Child Component Value: ' + component_type)
 
-        property_def_instance = self._get_property_instance(base_property_def, key, value)
-        parsed_values.append({key: property_def_instance.read(prop_value)});
+          parsed_values.append({key: DynamicComponentPropertyType.get_component_data(component_id, component_type, component_data, component_json)})
+
+      elif isinstance(prop_value, dict):
+        for key,value in prop_value.items():
+          if not self.save_incomplete_data and (value is None or self._is_empty_asset_ref(value)):
+            continue
+
+          property_def_instance = self._get_property_instance(base_property_def, key, value)
+          parsed_values.append({key: property_def_instance.read(prop_value)});
 
     return parsed_values
 
