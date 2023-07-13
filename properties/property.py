@@ -37,6 +37,7 @@ from .connection_field import ConnnectionFieldPropertyType
 from lumavate_exceptions import ValidationException
 from .data_source import DataSourcePropertyType
 from .datetime import DateTimePropertyType
+from .time_range import TimeRangePropertyType
 from .video import VideoPropertyType
 
 class Property:
@@ -108,6 +109,7 @@ class Property:
       'dynamic-property-list': DynamicPropertyListPropertyType,
       'connection-field': ConnnectionFieldPropertyType,
       'datetime': DateTimePropertyType,
+      'time-range': TimeRangePropertyType,
       'video': VideoPropertyType
     }
 
