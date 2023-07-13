@@ -34,4 +34,5 @@ class Properties:
   from .data_source import DataSourcePropertyType
   from .connection_field import ConnnectionFieldPropertyType
   from .datetime import DateTimePropertyType
+  from .time_range import TimeRangePropertyType
   from .video import VideoPropertyType
