@@ -24,6 +24,7 @@ class Properties:
   from .dropdown_options import DropdownOptionsPropertyType
   from .asset_select import AssetSelectPropertyType
   from .asset_field import AssetFieldPropertyType
+  from .asset_field_filter import AssetFieldFilterPropertyType
   from .dynamic_asset_select import DynamicAssetSelectPropertyType
   from .file_upload import FileUploadPropertyType
   from .font_style import FontStylePropertyType
