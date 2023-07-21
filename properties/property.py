@@ -26,6 +26,7 @@ from .data_column_row_input import DataColumnRowInputPropertyType
 from .font import FontPropertyType
 from .asset_select import AssetSelectPropertyType
 from .asset_field import AssetFieldPropertyType
+from .asset_field_filter import AssetFieldFilterPropertyType
 from .file_upload import FileUploadPropertyType
 from .email_list import EmailListPropertyType
 from .font_style import FontStylePropertyType
@@ -73,6 +74,7 @@ class Property:
     types = {
       'asset-select': AssetSelectPropertyType,
       'asset-field': AssetFieldPropertyType,
+      'asset-field-filter': AssetFieldFilterPropertyType,
       'data-source': DataSourcePropertyType,
       'text' : TextPropertyType,
       'color': ColorPropertyType,
