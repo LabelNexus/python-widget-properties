@@ -49,7 +49,7 @@ class DynamicPropertyListPropertyType(BasePropertyType):
           component_id = value.get('id', None)
           component_json = g.all_components.get(component_type, None)
           if component_json is None:
-            raise ValidationException('Invalid Child Component Value: ' + component_type)
+            continue
 
           parsed_values.append({key: DynamicComponentPropertyType.get_component_data(component_id, component_type, component_data, component_json)})
 
