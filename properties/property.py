@@ -10,6 +10,7 @@ from .dropdown import DropdownPropertyType
 from .dropdown_options import DropdownOptionsPropertyType
 from .multiselect import MultiselectPropertyType
 from .multiselect_chip import MultiselectChipPropertyType
+from .tag_selector import TagSelectorPropertyType
 from .numeric import NumericPropertyType
 from .page_link import PageLinkPropertyType
 from .code_editor import CodeEditorPropertyType
@@ -88,6 +89,7 @@ class Property:
       'dropdown-options': DropdownOptionsPropertyType,
       'multiselect': MultiselectPropertyType,
       'multiselect-chip': MultiselectChipPropertyType,
+      'tag-selector': TagSelectorPropertyType,
       'numeric': NumericPropertyType,
       'page-link': PageLinkPropertyType,
       'code-editor': CodeEditorPropertyType,
