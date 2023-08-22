@@ -12,6 +12,7 @@ class Properties:
   from .dropdown import DropdownPropertyType
   from .multiselect import MultiselectPropertyType
   from .multiselect_chip import MultiselectChipPropertyType
+  from .tag_selector import TagSelectorPropertyType
   from .numeric import NumericPropertyType
   from .page_link import PageLinkPropertyType
   from .code_editor import CodeEditorPropertyType
@@ -24,6 +25,7 @@ class Properties:
   from .dropdown_options import DropdownOptionsPropertyType
   from .asset_select import AssetSelectPropertyType
   from .asset_field import AssetFieldPropertyType
+  from .asset_field_filter import AssetFieldFilterPropertyType
   from .dynamic_asset_select import DynamicAssetSelectPropertyType
   from .file_upload import FileUploadPropertyType
   from .font_style import FontStylePropertyType
@@ -34,4 +36,5 @@ class Properties:
   from .data_source import DataSourcePropertyType
   from .connection_field import ConnnectionFieldPropertyType
   from .datetime import DateTimePropertyType
+  from .time_range import TimeRangePropertyType
   from .video import VideoPropertyType

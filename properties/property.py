@@ -10,6 +10,7 @@ from .dropdown import DropdownPropertyType
 from .dropdown_options import DropdownOptionsPropertyType
 from .multiselect import MultiselectPropertyType
 from .multiselect_chip import MultiselectChipPropertyType
+from .tag_selector import TagSelectorPropertyType
 from .numeric import NumericPropertyType
 from .page_link import PageLinkPropertyType
 from .code_editor import CodeEditorPropertyType
@@ -26,6 +27,7 @@ from .data_column_row_input import DataColumnRowInputPropertyType
 from .font import FontPropertyType
 from .asset_select import AssetSelectPropertyType
 from .asset_field import AssetFieldPropertyType
+from .asset_field_filter import AssetFieldFilterPropertyType
 from .file_upload import FileUploadPropertyType
 from .email_list import EmailListPropertyType
 from .font_style import FontStylePropertyType
@@ -37,6 +39,7 @@ from .connection_field import ConnnectionFieldPropertyType
 from lumavate_exceptions import ValidationException
 from .data_source import DataSourcePropertyType
 from .datetime import DateTimePropertyType
+from .time_range import TimeRangePropertyType
 from .video import VideoPropertyType
 
 class Property:
@@ -72,6 +75,7 @@ class Property:
     types = {
       'asset-select': AssetSelectPropertyType,
       'asset-field': AssetFieldPropertyType,
+      'asset-field-filter': AssetFieldFilterPropertyType,
       'data-source': DataSourcePropertyType,
       'text' : TextPropertyType,
       'color': ColorPropertyType,
@@ -85,6 +89,7 @@ class Property:
       'dropdown-options': DropdownOptionsPropertyType,
       'multiselect': MultiselectPropertyType,
       'multiselect-chip': MultiselectChipPropertyType,
+      'tag-selector': TagSelectorPropertyType,
       'numeric': NumericPropertyType,
       'page-link': PageLinkPropertyType,
       'code-editor': CodeEditorPropertyType,
@@ -108,6 +113,7 @@ class Property:
       'dynamic-property-list': DynamicPropertyListPropertyType,
       'connection-field': ConnnectionFieldPropertyType,
       'datetime': DateTimePropertyType,
+      'time-range': TimeRangePropertyType,
       'video': VideoPropertyType
     }
 
