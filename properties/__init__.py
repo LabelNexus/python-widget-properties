@@ -38,3 +38,4 @@ class Properties:
   from .datetime import DateTimePropertyType
   from .time_range import TimeRangePropertyType
   from .video import VideoPropertyType
+  from .currency import CurrencyPropertyType
