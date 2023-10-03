@@ -41,6 +41,7 @@ from .data_source import DataSourcePropertyType
 from .datetime import DateTimePropertyType
 from .time_range import TimeRangePropertyType
 from .video import VideoPropertyType
+from .currency import CurrencyPropertyType
 
 class Property:
   def __init__(self, classification, section, name, label, property_type_name, options={}, default=None, help_text=None, additional_options={}):
@@ -114,7 +115,8 @@ class Property:
       'connection-field': ConnnectionFieldPropertyType,
       'datetime': DateTimePropertyType,
       'time-range': TimeRangePropertyType,
-      'video': VideoPropertyType
+      'video': VideoPropertyType,
+      'currency': CurrencyPropertyType
     }
 
     prop_type = types.get(type_name)
