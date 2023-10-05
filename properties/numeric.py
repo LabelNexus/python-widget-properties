@@ -17,6 +17,9 @@ class NumericPropertyType(BasePropertyType):
   @property
   def decimal_places(self):
     return self.property.options.get('decimalPlaces',0)
+  
+  def allow_empty(self):
+    return False
 
   def too_low(self, val):
     return self.min is not None and val < self.min
@@ -27,8 +30,11 @@ class NumericPropertyType(BasePropertyType):
   def read(self, data):
     val = super().read(data)
 
-    if val == "":
+    if val == "" and not self.allow_empty():
       val = self.property.default
+
+    if self.allow_empty() and (val == "" or val == None):
+      return val
 
     try:
       if self.decimal_places == 0:

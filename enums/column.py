@@ -6,6 +6,7 @@ class ColumnDataType(str, Enum):
   DROPDOWN = 'dropdown'
   MULTISELECT = 'multiselect'
   NUMERIC = 'numeric'
+  CURRENCY = 'currency'
   TEXT = 'text'
   FILE = 'file'
   RICHTEXT = 'richtext'
