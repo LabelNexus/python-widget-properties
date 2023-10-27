@@ -42,6 +42,7 @@ from .datetime import DateTimePropertyType
 from .time_range import TimeRangePropertyType
 from .video import VideoPropertyType
 from .currency import CurrencyPropertyType
+from .timezone import TimezonePropertyType
 
 class Property:
   def __init__(self, classification, section, name, label, property_type_name, options={}, default=None, help_text=None, additional_options={}):
@@ -116,7 +117,8 @@ class Property:
       'datetime': DateTimePropertyType,
       'time-range': TimeRangePropertyType,
       'video': VideoPropertyType,
-      'currency': CurrencyPropertyType
+      'currency': CurrencyPropertyType,
+      'timezone': TimezonePropertyType
     }
 
     prop_type = types.get(type_name)
