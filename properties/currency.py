@@ -9,4 +9,10 @@ class CurrencyPropertyType(NumericPropertyType):
   def allow_empty(self):
     return True
 
+  def format_value(self, val):
+    if isinstance(val, str):
+      return val.strip('$').replace(',', '')
+    
+    return val
+
 
