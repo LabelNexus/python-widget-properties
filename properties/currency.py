@@ -11,7 +11,7 @@ class CurrencyPropertyType(NumericPropertyType):
 
   def format_value(self, val):
     if isinstance(val, str):
-      return val.strip('$')
+      return val.strip('$').replace(',', '')
     
     return val
 
