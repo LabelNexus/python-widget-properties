@@ -39,3 +39,4 @@ class Properties:
   from .time_range import TimeRangePropertyType
   from .video import VideoPropertyType
   from .currency import CurrencyPropertyType
+  from .timezone import TimezonePropertyType

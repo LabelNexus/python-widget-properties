@@ -55,7 +55,7 @@ class PatchRequest:
     return PatchRequest(
         json.get('namespace'), \
         json.get('instanceId'), \
-        Properties.Property.from_json(json.get('propertyDef')) if json.get('operation') is not 'delete' else None, \
+        Properties.Property.from_json(json.get('propertyDef')), \
         json.get('operation'), \
         json.get('propertyValue'), \
         json.get('parentType'), \

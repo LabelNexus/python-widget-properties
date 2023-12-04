@@ -27,8 +27,13 @@ class NumericPropertyType(BasePropertyType):
   def too_high(self, val):
     return self.max is not None and val > self.max
 
+  def format_value(self, val):
+    return val
+
   def read(self, data):
     val = super().read(data)
+
+    val = self.format_value(val)
 
     if val == "" and not self.allow_empty():
       val = self.property.default

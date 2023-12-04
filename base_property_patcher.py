@@ -177,7 +177,9 @@ class BasePropertyPatcher:
       'parentName': self.patch_request.parent_name,
       'parentType': self.patch_request.parent_type,
       'propertyName': property_name,
-      'value': updated_value
+      'value': updated_value,
+      'propertyDefault': self.patch_request.property.to_json() if self.patch_request.property is not None else None
+
     }
 
   def default(self):
