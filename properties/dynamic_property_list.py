@@ -5,6 +5,7 @@ from .base_property_type import BasePropertyType
 from .dynamic_component import DynamicComponentPropertyType
 from lumavate_exceptions import ValidationException
 import copy
+import uuid
 
 class DynamicPropertyListPropertyType(BasePropertyType):
   @property
@@ -34,8 +35,23 @@ class DynamicPropertyListPropertyType(BasePropertyType):
     parsed_values = []
 
     base_property_def = self.property_def
-    if isinstance(val, dict) and 'dataColumnRef' in val:
-      return val
+
+    if isinstance(val, dict):
+      if 'dataColumnRef' in val:
+        return val
+
+      # convert objects to arrays for converting from a previous property type
+      item = {}
+      id = str(uuid.uuid4())
+      
+      if 'id' in val:
+        if val['id'] is not None:
+          id = val['id']
+        else:
+          val['id'] = id
+
+      item[f'{self.property_def.name}_{id[:8]}'] = val
+      val = [item]
 
     for prop_value in val:
       if base_property_def.property_type.type_name == 'dynamic-component':
