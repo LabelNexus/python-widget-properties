@@ -44,6 +44,7 @@ from .time_range import TimeRangePropertyType
 from .video import VideoPropertyType
 from .currency import CurrencyPropertyType
 from .timezone import TimezonePropertyType
+from .content_asset_filter_select import ContentAssetFilterSelectPropertyType
 
 class Property:
   def __init__(self, classification, section, name, label, property_type_name, options={}, default=None, help_text=None, additional_options={}):
@@ -120,7 +121,8 @@ class Property:
       'time-range': TimeRangePropertyType,
       'video': VideoPropertyType,
       'currency': CurrencyPropertyType,
-      'timezone': TimezonePropertyType
+      'timezone': TimezonePropertyType,
+      'content-asset-filter-select': ContentAssetFilterSelectPropertyType
     }
 
     prop_type = types.get(type_name)
