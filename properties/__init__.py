@@ -41,3 +41,4 @@ class Properties:
   from .currency import CurrencyPropertyType
   from .timezone import TimezonePropertyType
   from .content_asset_filter_select import ContentAssetFilterSelectPropertyType
+  from .page_slug import PageSlugPropertyType
