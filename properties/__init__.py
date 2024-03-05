@@ -40,4 +40,5 @@ class Properties:
   from .video import VideoPropertyType
   from .currency import CurrencyPropertyType
   from .timezone import TimezonePropertyType
+  from .country import CountryPropertyType
   from .content_asset_filter_select import ContentAssetFilterSelectPropertyType
