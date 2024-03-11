@@ -45,6 +45,7 @@ from .time_range import TimeRangePropertyType
 from .video import VideoPropertyType
 from .currency import CurrencyPropertyType
 from .timezone import TimezonePropertyType
+from .country import CountryPropertyType
 from .content_asset_filter_select import ContentAssetFilterSelectPropertyType
 
 class Property:
@@ -124,6 +125,7 @@ class Property:
       'video': VideoPropertyType,
       'currency': CurrencyPropertyType,
       'timezone': TimezonePropertyType,
+      'country': CountryPropertyType,
       'content-asset-filter-select': ContentAssetFilterSelectPropertyType
     }
 
