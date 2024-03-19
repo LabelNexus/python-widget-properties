@@ -50,8 +50,6 @@ class TextPropertyType(BasePropertyType):
         raise ValidationException(f'Field may contain only letters, numbers, and spaces.', api_field=self.property.name)
       if self.allowed_keys == 'alpha-numeric-extra' and not self.is_alpha_numeric_extra(val):
         raise ValidationException(f'Field may contain only letters, numbers, space, dash, and underscore.', api_field=self.property.name)
-      if self.allowed_keys == 'alpha-numeric-extra-nospace' and not self.is_alpha_numeric_extra_nospace(val):
-        raise ValidationException(f'Field may contain only letters, numbers, dash, and underscore.', api_field=self.property.name)
 
     return val
 
@@ -66,9 +64,6 @@ class TextPropertyType(BasePropertyType):
 
   def is_alpha_numeric_extra(self, val):
     return self.is_ascii(val) and all(x.isalnum() or x.isspace() or x=='-' or x=='_' for x in val)
-
-  def is_alpha_numeric_extra_nospace(self, val):
-    return self.is_ascii(val) and all(x.isalnum() or x=='-' or x=='_' for x in val)
 
   def is_ascii(self, val):
     try:
