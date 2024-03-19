@@ -13,7 +13,7 @@ from .multiselect_chip import MultiselectChipPropertyType
 from .tag_selector import TagSelectorPropertyType
 from .numeric import NumericPropertyType
 from .page_link import PageLinkPropertyType
-from .page_slug import PageSlugPropertyType
+from .page_slug_editor import PageSlugEditorPropertyType
 from .code_editor import CodeEditorPropertyType
 from .html_editor import HtmlEditorPropertyType
 from .html_editor_view import HtmlEditorViewPropertyType
@@ -99,7 +99,8 @@ class Property:
       'tag-selector': TagSelectorPropertyType,
       'numeric': NumericPropertyType,
       'page-link': PageLinkPropertyType,
-      'page-slug': PageSlugPropertyType,
+      'page-slug-editor': PageSlugEditorPropertyType,
+      'page-slug-editor-view': PageSlugEditorViewPropertyType,
       'code-editor': CodeEditorPropertyType,
       'theme-color': ThemeColorPropertyType,
       'admin-launcher': AdminLauncherPropertyType,

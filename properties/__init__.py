@@ -42,4 +42,4 @@ class Properties:
   from .timezone import TimezonePropertyType
   from .country import CountryPropertyType
   from .content_asset_filter_select import ContentAssetFilterSelectPropertyType
-  from .page_slug import PageSlugPropertyType
+  from .page_slug_editor import PageSlugEditorPropertyType
