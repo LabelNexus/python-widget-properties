@@ -100,7 +100,6 @@ class Property:
       'numeric': NumericPropertyType,
       'page-link': PageLinkPropertyType,
       'page-slug-editor': PageSlugEditorPropertyType,
-      'page-slug-editor-view': PageSlugEditorViewPropertyType,
       'code-editor': CodeEditorPropertyType,
       'theme-color': ThemeColorPropertyType,
       'admin-launcher': AdminLauncherPropertyType,
