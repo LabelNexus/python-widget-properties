@@ -14,3 +14,4 @@ class ColumnDataType(str, Enum):
   IMAGE = 'image'
   VIDEO = 'video'
   ASSETDATA = 'asset-data'
+  COUNTRY = 'country'
